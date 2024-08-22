@@ -1,0 +1,170 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+html,
+body {
+    height: 100%;
+    font-family: 'Atma';
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: rgba(251, 156, 3, 1);
+    padding: 20px;
+    color: rgba(82, 15, 105, 1);
+}
+
+header .logo {
+    display: flex;
+    align-items: center;
+}
+
+header .logo-imagem {
+    width: 50px;
+    height: 50px;
+    background-image: url('logo sem fundo.png');
+    background-size: cover;
+    background-position: center;
+    margin-right: 15px;
+}
+
+header nav a {
+    color: rgba(82, 15, 105, 1);
+    margin: 0 15px;
+    text-decoration: none;
+    font-weight: bold;
+    transition: color 0.3s;
+}
+
+header nav a:hover {
+    color: #fff;
+}
+
+main {
+    flex: 1;
+    padding: 40px 20px;
+    background-color: #f9f9f9;
+}
+
+main h1 {
+    color: rgba(82, 15, 105, 1);
+    font-size: 32px;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+main table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: #fff;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+main thead th,
+main tbody td {
+    border: 1px solid #ddd;
+    text-align: center;
+    padding: 15px;
+    font-size: 16px;
+}
+
+main thead th {
+    background-color: rgba(251, 156, 3, 1);
+    color: rgba(82, 15, 105, 1);
+}
+
+main tbody .dia {
+    background-color: rgba(251, 156, 3, 1);
+    color: #fff;
+    font-weight: bold;
+}
+
+main tbody td:hover {
+    background-color: #fce0b2;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+
+footer {
+    background-color: rgba(82, 15, 105, 1);
+    color: #fff;
+    padding: 30px 20px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+
+footer .info,
+footer .formas-pagamento {
+    flex: 1 1 300px;
+    margin-bottom: 20px;
+}
+
+footer .info p {
+    margin-bottom: 15px;
+    line-height: 1.6;
+}
+
+footer .formas-pagamento p {
+    margin-bottom: 10px;
+    font-weight: bold;
+}
+
+.icones-pagamento {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.icones-pagamento div {
+    width: 50px;
+    height: 30px;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.icones-pagamento .visa {
+    background-image: url('path-to-visa-image');
+}
+
+.icones-pagamento .mastercard {
+    background-image: url('path-to-mastercard-image');
+}
+
+.icones-pagamento .diners {
+    background-image: url('path-to-diners-image');
+}
+
+.icones-pagamento .amex {
+    background-image: url('path-to-amex-image');
+}
+
+.icones-pagamento .elo {
+    background-image: url('path-to-elo-image');
+}
+
+.icones-pagamento .aura {
+    background-image: url('path-to-aura-image');
+}
+
+.icones-pagamento .hipercard {
+    background-image: url('path-to-hipercard-image');
+}
+
+.icones-pagamento .boleto {
+    background-image: url('path-to-boleto-image');
+}

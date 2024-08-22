@@ -1,0 +1,167 @@
+/* Reset básico */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Estilo geral */
+html, body {
+    height: 100%; /* Garante que o body ocupe toda a altura da página */
+    font-family: 'Atma', sans-serif;
+    color: #4B0082;
+    display: flex;
+    flex-direction: column; /* Define a direção das flexbox para que o footer seja empurrado para baixo */
+}
+
+/* Header */
+header {
+    background-color: #FF8C00;
+    padding: 10px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+header .logo {
+    display: flex;
+    align-items: center;
+    font-size:xx-large;
+    font-weight: bold;
+}
+
+header .logo img {
+    width: 70px;
+    margin-right: 20px;
+}
+
+header nav a {
+    color: #4B0082;
+    text-decoration: none;
+    margin: 0 15px;
+    font-weight: bold;
+    font-size:x-large;
+    margin-left: 20px;
+    
+}
+
+header nav a:hover {
+    text-decoration: underline;
+}
+
+/* Wrapper para o conteúdo */
+.content-wrapper {
+    flex: 1; /* O conteúdo vai crescer para ocupar o espaço disponível, empurrando o footer para baixo */
+}
+
+/* Promoção */
+.promo {
+    background-color: #FFFFFF;
+    padding: 70px;
+    text-align: center;
+}
+
+.carousel {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.carousel-content {
+    position: relative;
+    max-width: 800px;
+    margin: auto;
+    overflow: hidden;
+}
+
+.carousel-content img {
+    width: 100%;
+    border-radius: 10px;
+}
+
+.carousel button {
+    background-color: transparent;
+    border: none;
+    font-size: 24px;
+    color: #4B0082;
+    cursor: pointer;
+}
+
+.carousel .prev {
+    position: absolute;
+    left: 0;
+}
+
+.carousel .next {
+    position: absolute;
+    right: 0;
+}
+
+/* Serviços */
+.services {
+    background-color: #FFFFFF;
+    padding: 40px 50px;
+    text-align: center;
+}
+
+.services h2 {
+    color: #4B0082;
+    font-size: 45px;
+}
+
+.services p {
+    color: #333;
+    margin-bottom: 40px;
+    font-size: xx-large;
+    font-weight: bold;
+}
+
+.service-options {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.service-item {
+    text-align: center;
+    max-width: 200px;
+}
+
+.service-item img {
+    width: 100%;
+    border-radius: 10px;
+    margin-bottom: 10px;
+}
+
+.service-item h3 {
+    color: #4B0082;
+    font-size: 20px;
+}
+
+/* Footer */
+footer {
+    background-color: #4B0082;
+    color: #FFFFFF;
+    padding: 20px 20px;
+}
+
+footer .footer-content {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    margin: 15px;
+}
+
+footer h4 {
+    margin-bottom: 10px;
+}
+
+footer p {
+    margin-bottom: 5px;
+}
+
+footer .payment-methods img {
+    width: 100%;
+    max-width: 200px;
+}
