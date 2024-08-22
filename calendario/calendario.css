@@ -17,6 +17,44 @@ body {
 }
 
 header {
+    background-color: #FF8C00;
+    padding: 10px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+header .logo {
+    display: flex;
+    align-items: center;
+    font-size:xx-large;
+    font-weight: bold;
+}
+
+header .logo-imagem {
+    width: 50px;
+    height: 50px;
+    background-image: url('logo\ sem\ fundol.png');
+    background-size: cover;
+    background-position: center;
+    margin-right: 15px;
+}
+
+header nav a {
+    color: #4B0082;
+    text-decoration: none;
+    margin: 0 15px;
+    font-weight: bold;
+    font-size:x-large;
+    margin-left: 20px;
+    
+}
+
+header nav a:hover {
+    text-decoration: underline;
+}
+
+/* header {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -49,7 +87,7 @@ header nav a {
 
 header nav a:hover {
     color: #fff;
-}
+} */
 
 main {
     flex: 1;
