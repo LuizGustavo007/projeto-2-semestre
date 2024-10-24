@@ -6,11 +6,11 @@
     <title>Document</title>
 </head>
 <body>
-    <a href="../index.html">Início</a>
-    <a href="./serviços.html">Serviços</a>
-    <a href="../sobre nos/sobrenos.html">Sobre nós</a>
-    <a href="../calendario/agendamento.html">Calendario</a>
-    <a href="../login/index.html">Login</a>
+    <a href="../index.php">Início</a>
+    <a href="./serviços.php">Serviços</a>
+    <a href="../sobre nos/sobrenos.php">Sobre nós</a>
+    <a href="../calendario/agendamento.php">Calendario</a>
+    <a href="../login/index.php">Login</a>
     
 </body>
 </html>

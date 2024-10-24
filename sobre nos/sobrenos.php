@@ -20,11 +20,11 @@
             </div>
             <nav>
                 <ul>
-                    <li><a href="../index.html">Início</a></li>
-                    <li><a href="../serviços/serviços.html">Serviços</a></li>
-                    <li><a href="../sobre nos/sobrenos.html">Sobre nós</a></li>
-                    <li><a href="../calendario/agendamento.html">Calendario</a></li>
-                    <li><a href="../login/index.html">Login</a></li>
+                    <li><a href="../index.php">Início</a></li>
+                    <li><a href="../serviços/serviços.php">Serviços</a></li>
+                    <li><a href="../sobre nos/sobrenos.php">Sobre nós</a></li>
+                    <li><a href="../calendario/agendamento.php">Calendario</a></li>
+                    <li><a href="../login/index.php">Login</a></li>
                 </ul>
             </nav>
         </header>

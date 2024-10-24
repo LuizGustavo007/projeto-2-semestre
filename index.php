@@ -17,11 +17,11 @@
                 <span>Planeta Pet</span>
             </div>
             <nav>
-                <a href="./index.html">Início</a>
-                <a href="./serviços/serviços.html">Serviços</a>
-                <a href="./sobre nos/">Sobre nós</a>
-                <a href="./calendario/agendamento.html">Calendario</a>
-                <a href="./login/index.html">Login</a>
+                <a href="./index.php">Início</a>
+                <a href="./serviços/serviços.php">Serviços</a>
+                <a href="./sobre nos/sobrenos.php">Sobre nós</a>
+                <a href="./calendario/agendamento.php">Calendario</a>
+                <a href="./login/index.php">Login</a>
                 
             </nav>
         </header>
