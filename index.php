@@ -12,27 +12,31 @@
 <body>
     <div class="content-wrapper">
         <header>
+            
             <div class="logo">
-                <img src="./img/logo.semtextosemfundo.png" alt="Logo Planeta Pet">
-                <span>Planeta Pet</span>
+            <img src="./img/logo.semtextosemfundo.png" alt="Logo Planeta Pet">
+            <span>Planeta Pet</span>
             </div>
+            
             <nav>
                 <a href="./index.php">Início</a>
                 <a href="./serviços/serviços.php">Serviços</a>
                 <a href="./sobre nos/sobrenos.php">Sobre nós</a>
                 <a href="./calendario/agendamento.php">Calendario</a>
-                <a href="./login/index.php">Login</a>
+                <a href="./login/login.php">Login</a>
                 
             </nav>
         </header>
 
         <section class="promo">
             <div class="carousel">
-                <button class="prev">&#10094;</button>
+                
                 <div class="carousel-content">
+                    <a href="./serviços/serviços.php">
                     <img src="./img/ImgCarrossel.PNG" alt="Promoção de rações">
+                    </a>
                 </div>
-                <button class="next">&#10095;</button>
+                
             </div>
         </section>
 
