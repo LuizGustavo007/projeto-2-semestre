@@ -14,7 +14,7 @@
         <header>
             <div class="logo">
                 <img src="./img/logo.semtextosemfundo.png" alt="Logo Planeta Pet">
-                <span>Planeta Petz</span>
+                <span>Planeta Pet</span>
             </div>
             <nav>
                 <a href="./index.php">Início</a>
