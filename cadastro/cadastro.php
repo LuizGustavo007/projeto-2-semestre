@@ -1,45 +1,39 @@
 <?php
-// Incluindo o arquivo de conexão
-include 'conexao.php'; // Verifique se o caminho para 'conexao.php' está correto
+include '../conexao.php';
 
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
-    // Obtendo os dados do formulário
-    $nome = $_POST["nome"]; 
-    $email = $_POST["email"]; 
+    $nome = $_POST["nome"];
+    $email = $_POST["email"];
     $telefone = $_POST["telefone"];
     $endereco = $_POST["endereco"];
     $senha = $_POST["senha"];
-    $confirmar_senha = $_POST["confirmar_senha"];
-    
-    // Verificando se a senha e a confirmação correspondem
-    if ($senha !== $confirmar_senha) {
-        die("As senhas não coincidem.");
-    }
 
-    // Verificando se a variável $conexao está definida
-    if (!$conexao) {
-        die("Erro: A conexão com o banco de dados não foi estabelecida.");
-    }
+    // Verifica se o email já está cadastrado
+    $sql_check = "SELECT id FROM usuarios WHERE email = ?";
+    $stmt_check = $conexao->prepare($sql_check);
+    $stmt_check->bind_param("s", $email);
+    $stmt_check->execute();
+    $stmt_check->store_result();
 
-    // Preparando a consulta SQL para inserir os dados
-    $sql = "INSERT INTO usuarios (nome, email, telefone, endereco, senha) VALUES (?, ?, ?, ?, ?)";
-    $stmt = $conexao->prepare($sql); // $conexao deve estar definido
-    if (!$stmt) {
-        die("Erro ao preparar a consulta: " . $conexao->error);
-    }
-    
-    // Vinculando os parâmetros e executando
-    $stmt->bind_param("sssss", $nome, $email, $telefone, $endereco, $senha);
-    if ($stmt->execute()) {
-        echo "Cadastro realizado com sucesso!";
+    if ($stmt_check->num_rows > 0) {
+        echo "Este email já está cadastrado.";
     } else {
-        echo "Erro ao cadastrar: " . $stmt->error;
-    }
+        // Código para hash e inserção do novo usuário
+        $senha_hashed = password_hash($senha, PASSWORD_DEFAULT);
+        $sql_insert = "INSERT INTO usuarios (nome, email, telefone, endereco, senha) VALUES (?, ?, ?, ?, ?)";
+        $stmt_insert = $conexao->prepare($sql_insert);
+        $stmt_insert->bind_param("sssss", $nome, $email, $telefone, $endereco, $senha_hashed);
+        
+        if ($stmt_insert->execute()) {
+            echo "Cadastro realizado com sucesso!";
+        } else {
+            echo "Erro ao cadastrar: " . $stmt_insert->error;
+        }
 
-    // Fechando a declaração
-    $stmt->close();
+        $stmt_insert->close();
+    }
+    $stmt_check->close();
 }
-?>
 ?>
 
 <!DOCTYPE html>
@@ -83,7 +77,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             <label for="confirmar_senha">Confirmar Senha:</label>
             <input name="confirmar_senha" type="password" id="confirmar_senha" required><br><br>
 
-            <button type="submit">Cadastrar</button>
+            <button type="submit"><a href="../login/login.php">Cadastrar</button>
         </form>
     </div>
 </body>

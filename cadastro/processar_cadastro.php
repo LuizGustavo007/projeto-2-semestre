@@ -1,29 +1,35 @@
 <?php
-// Inclui o arquivo de conexão
-include 'conexao.php';
+include '../conexao.php';
 
-// Verifica se o formulário foi enviado
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    
     $nome_cliente = $_POST['nome'];
     $email_cliente = $_POST['email'];
     $telefone_cliente = $_POST['telefone'];
     $endereco_cliente = $_POST['endereco'];
     $senha_cliente = $_POST['senha'];
 
-    
-    $sql = "INSERT INTO clientes (nome_cliente, email_cliente, telefone_cliente, endereco_cliente, senha_cliente) 
-            VALUES ('$nome_cliente', '$email_cliente', '$telefone_cliente', '$endereco_cliente', '$senha_cliente')";
+    $senha_cliente_hashed = password_hash($senha_cliente, PASSWORD_DEFAULT);
 
-    if($conexao -> query($sql) === TRUE){
-        echo "<script>alert('Usuario cadastrado com sucesso');</script>";
-    }else{
-        echo "<script>alert('Usuario não cadastrado');</script>";
-        echo "Erro no cadastro" . $conexao -> error;
+    $sql = "INSERT INTO clientes (nome_cliente, email_cliente, telefone_cliente, endereco_cliente, senha_cliente) 
+            VALUES (?, ?, ?, ?, ?)";
+
+    $stmt = $conexao->prepare($sql);
+    if (!$stmt) {
+        die("Erro ao preparar a consulta: " . $conexao->error);
     }
-    $conexao->close();
+    
+    $stmt->bind_param("sssss", $nome_cliente, $email_cliente, $telefone_cliente, $endereco_cliente, $senha_cliente_hashed);
+    if ($stmt->execute()) {
+        echo "<script>alert('Usuario cadastrado com sucesso');</script>";
+    } else {
+        echo "<script>alert('Usuario não cadastrado');</script>";
+        echo "Erro no cadastro: " . $stmt->error;
+    }
+
+    $stmt->close();
 }
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
