@@ -28,47 +28,40 @@ h3{
 }
 
 header {
-    background-color: #f0781e;
-    color: #4b1d65;
+    background-color: #FF8C00;
+    padding: 10px 20px;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 10px 20px;
 }
-
+span{
+    color: #4B0082;
+}
 header .logo {
     display: flex;
     align-items: center;
+    font-size:xx-large;
+    font-weight: bold;
 }
 
 header .logo img {
-    width: 50px;
-    height: 50px;
+    width: 70px;
+    margin-right: 20px;
 }
 
-header h1 {
-    margin-left: 10px;
-    font-size: 24px;
-}
-
-nav ul {
-    list-style: none;
-    display: flex;
-    margin: 0;
-    padding: 0;
-}
-
-nav ul li {
-    margin-left: 20px;
-}
-
-nav ul li a {
-    color: #4b1d65;
+header nav a {
+    color: #4B0082;
     text-decoration: none;
+    margin: 0 15px;
     font-weight: bold;
-    font-size: x-large;
+    font-size:x-large;
+    margin-left: 20px;
+    
 }
 
+header nav a:hover {
+    font-size: xx-large;
+}
 .sobre {
     text-align: center;
     padding: 20px;

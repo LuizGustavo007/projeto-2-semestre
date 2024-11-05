@@ -13,19 +13,20 @@
         <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap" rel="stylesheet">
     </head>
     <body>
-        <header>
+    <header>
+            
             <div class="logo">
-                <img src="imgsobrenos/logo-nav.png" alt="Planeta Pet Logo">
-                <h1>Planeta Pet</h1>
+            <img src="../img/logo.semtextosemfundo.png" alt="Logo Planeta Pet">
+            <span>Planeta Pet</span>
             </div>
+            
             <nav>
-                <ul>
-                    <li><a href="../index.php">Início</a></li>
-                    <li><a href="../serviços/serviços.php">Serviços</a></li>
-                    <li><a href="../sobre nos/sobrenos.php">Sobre nós</a></li>
-                    <li><a href="../calendario/agendamento.php">Calendario</a></li>
-                    <li><a href="../login/index.php">Login</a></li>
-                </ul>
+                <a href="../index.php">Início</a>
+                <a href="../serviços/serviços.php">Serviços</a>
+                <a href="../sobre nos/sobrenos.php">Sobre nós</a>
+                <a href="../calendario/agendamento.php">Calendario</a>
+                <a href="../login/login.php">Login</a>
+                
             </nav>
         </header>
     
