@@ -1,7 +1,7 @@
 <?php
 include '../bd/conexao.php';
 
-$status = '';  // Variável para indicar o status do cadastro
+$status = ''; 
 
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $nome = trim($_POST["nome"]);
@@ -11,11 +11,9 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $senha = $_POST["senha"];
     $confirmar_senha = $_POST["confirmar_senha"];
 
-    // Verifica se a confirmação de senha coincide
     if ($senha !== $confirmar_senha) {
         $status = 'senha_nao_confere';
     } else {
-        // Verifica se o e-mail já está cadastrado
         $sql_check = "SELECT id FROM usuarios WHERE email = ?";
         $stmt_check = $conexao->prepare($sql_check);
         $stmt_check->bind_param("s", $email);
@@ -25,7 +23,6 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         if ($stmt_check->num_rows > 0) {
             $status = 'email_existente';
         } else {
-            // Hash da senha e inserção do novo usuário
             $senha_hashed = password_hash($senha, PASSWORD_DEFAULT);
             $sql_insert = "INSERT INTO usuarios (nome, email, telefone, endereco, senha) VALUES (?, ?, ?, ?, ?)";
             $stmt_insert = $conexao->prepare($sql_insert);
@@ -33,7 +30,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
             if ($stmt_insert->execute()) {
                 $status = 'sucesso';
-                header("Location: cadastro.php?status=$status");  // Redireciona com o status de sucesso
+                header("Location: cadastro.php?status=$status");  
                 exit();
             } else {
                 $status = 'erro_insercao';
@@ -53,7 +50,6 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Planeta Pet - Cadastro</title>
     <link rel="stylesheet" href="./style.css">
-    <!-- SweetAlert2 CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
 </head>
 <body>
@@ -94,10 +90,8 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         </form>
     </div>
 
-    <!-- SweetAlert2 Script -->
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script>
-        // Função para exibir alertas com base no status recebido via query string
         function showAlertBasedOnStatus() {
             const urlParams = new URLSearchParams(window.location.search);
             const status = urlParams.get('status');
@@ -142,7 +136,6 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             }
         }
 
-        // Chama a função ao carregar a página
         window.onload = showAlertBasedOnStatus;
     </script>
 </body>

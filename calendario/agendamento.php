@@ -12,22 +12,21 @@
 </head>
 
 <body>
-<header>
+    <header> 
+        <div class="logo">
+        <img src="../img/logo.semtextosemfundo.png" alt="Logo Planeta Pet">
+        <span>Planeta Pet</span>
+        </div>
             
-            <div class="logo">
-            <img src="../img/logo.semtextosemfundo.png" alt="Logo Planeta Pet">
-            <span>Planeta Pet</span>
-            </div>
-            
-            <nav>
-                <a href="../pagina inicial/paginainicial.php">Início</a>
-                <a href="../serviços/serviços.php">Serviços</a>
-                <a href="../sobre nos/sobrenos.php">Sobre nós</a>
-                <a href="../calendario/agendamento.php">Calendario</a>
-                <a href="../index.php">Login</a>
+        <nav>
+            <a href="../pagina inicial/paginainicial.php">Início</a>
+            <a href="../serviços/serviços.php">Serviços</a>
+            <a href="../sobre nos/sobrenos.php">Sobre nós</a>
+            <a href="../calendario/agendamento.php">Calendario</a>
+            <a href="../index.php">Login</a>
                 
-            </nav>
-        </header>
+        </nav>
+    </header>
 
     <main>
         <h1>Dias Disponíveis :</h1>

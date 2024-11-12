@@ -1,10 +1,8 @@
-/* Reset */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
-
 html, body {
     height: 100%;
     font-family: 'Atma', sans-serif;
@@ -12,8 +10,6 @@ html, body {
     display: flex;
     flex-direction: column;
 }
-
-/* Header */
 header {
     background-color: #FF8C00;
     padding: 10px 20px;
@@ -21,19 +17,16 @@ header {
     justify-content: space-between;
     align-items: center;
 }
-
 header .logo {
     display: flex;
     align-items: center;
     font-size: xx-large;
     font-weight: bold;
 }
-
 header .logo img {
     width: 70px;
     margin-right: 20px;
 }
-
 header nav a {
     color: #4B0082;
     text-decoration: none;
@@ -42,24 +35,18 @@ header nav a {
     font-size: x-large;
     margin-left: 20px;
 }
-
 header nav a:hover {
     font-size: xx-large;
 }
-
-/* Title */
 h1 {
     font-size: 3rem;
     text-align: center;
     margin-bottom: 40px;
     color: #4b1d65;
 }
-
 a {
     text-decoration: none;
 }
-
-/* Services Container */
 .services-container {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -69,7 +56,6 @@ a {
     max-width: 1200px;
     margin: 0 auto;
 }
-
 .service-box {
     background-color: #ffa94d;
     border-radius: 10px;
@@ -79,24 +65,19 @@ a {
     transition: transform 0.3s ease;
     margin-bottom: 20px;
 }
-
 .service-box:hover {
     transform: scale(1.05);
 }
-
 .service-box h3 {
     font-size: 1.5rem;
     margin-bottom: 10px;
     color: #4b0082;
 }
-
 .service-box p {
     font-size: 1rem;
     color: #333;
     line-height: 1.6;
 }
-
-/* Hygiene Section */
 .hygiene-section {
     background-color: #ffe5b4;
     padding: 20px;
@@ -105,14 +86,11 @@ a {
     max-width: 1200px;
     text-align: center;
 }
-
 .hygiene-section p {
     font-size: 1.2rem;
     color: #4b1d65;
     line-height: 1.8;
 }
-
-/* Footer */
 footer {
     background-color: rgba(82, 15, 105, 1);
     color: #fff;
@@ -122,28 +100,23 @@ footer {
     justify-content: space-between;
     align-items: flex-start;
 }
-
 footer .info, footer .formas-pagamento {
     flex: 1 1 300px;
     margin-bottom: 20px;
 }
-
 footer .info p {
     margin-bottom: 15px;
     line-height: 1.6;
 }
-
 footer .formas-pagamento p {
     margin-bottom: 10px;
     font-weight: bold;
 }
-
 .icones-pagamento {
     display: flex;
     flex-wrap: wrap;
     gap: 10px;
 }
-
 .icones-pagamento div {
     width: 50px;
     height: 30px;
@@ -151,47 +124,54 @@ footer .formas-pagamento p {
     background-repeat: no-repeat;
     background-position: center;
 }
-
-.icones-pagamento .visa { background-image: url('path-to-visa-image'); }
-.icones-pagamento .mastercard { background-image: url('path-to-mastercard-image'); }
-.icones-pagamento .diners { background-image: url('path-to-diners-image'); }
-.icones-pagamento .amex { background-image: url('path-to-amex-image'); }
-.icones-pagamento .elo { background-image: url('path-to-elo-image'); }
-.icones-pagamento .aura { background-image: url('path-to-aura-image'); }
-.icones-pagamento .hipercard { background-image: url('path-to-hipercard-image'); }
-.icones-pagamento .boleto { background-image: url('path-to-boleto-image'); }
-
-/* Responsividade */
+.icones-pagamento .visa { 
+    background-image: url('path-to-visa-image'); 
+}
+.icones-pagamento .mastercard { 
+    background-image: url('path-to-mastercard-image'); 
+}
+.icones-pagamento .diners { 
+    background-image: url('path-to-diners-image'); 
+}
+.icones-pagamento .amex { 
+    background-image: url('path-to-amex-image'); 
+}
+.icones-pagamento .elo { 
+    background-image: url('path-to-elo-image'); 
+}
+.icones-pagamento .aura { 
+    background-image: url('path-to-aura-image'); 
+}
+.icones-pagamento .hipercard { 
+    background-image: url('path-to-hipercard-image'); 
+}
+.icones-pagamento .boleto { 
+    background-image: url('path-to-boleto-image'); 
+}
 @media (max-width: 992px) {
     header nav a {
         font-size: large;
         margin-left: 10px;
     }
-
     .services-container {
         grid-template-columns: repeat(2, 1fr);
     }
-
     footer .info, footer .formas-pagamento {
         flex: 1 1 100%;
         text-align: center;
     }
 }
-
 @media (max-width: 600px) {
     header nav {
         flex-direction: column;
         align-items: center;
     }
-
     h1 {
         font-size: 2.5rem;
     }
-
     .services-container {
         grid-template-columns: 1fr;
     }
-
     footer .info, footer .formas-pagamento {
         flex: 1 1 100%;
     }

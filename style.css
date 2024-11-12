@@ -2,12 +2,10 @@
     margin: 0;
     padding: 0;
 }
-
 body {
     font-family: Arial, sans-serif;
     background-color: #FFFFFF;
 }
-
 .header {
     background-color: rgba(251, 156, 3, 1);
     height: 70px;
@@ -15,23 +13,19 @@ body {
     align-items: center;
     padding-left: 20px;
 }
-
 .header .logo img {
     height: 40px;
 }
-
 .imagemheader {
     width: 60px;
     height: 100px;
 }
-
 .titulo p {
     color: #47055e;
     font-family: "Atma", system-ui;
     font-weight: 1000;
     margin-left: 10px;
 }
-
 .login-container {
     width: 300px;
     margin: 100px auto;
@@ -40,19 +34,16 @@ body {
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
-
 .login-container h1 {
     font-family: 'Comic Sans MS', cursive, sans-serif;
     color: #5C2B2E;
     text-align: center;
 }
-
 .login-container label {
     font-size: 14px;
     color: #5C2B2E;
     font-weight: bold;
 }
-
 .login-container input[type="email"],
 .login-container input[type="password"] {
     width: 100%;
@@ -62,7 +53,6 @@ body {
     border-radius: 5px;
     box-sizing: border-box;
 }
-
 button[type="submit"] {
     width: 100%;
     padding: 10px;
@@ -73,21 +63,17 @@ button[type="submit"] {
     font-weight: bold;
     color: #5C2B2E;
 }
-
 button[type="submit"]:hover {
     background-color: #FFD54F;
 }
-
 .login-container p {
     text-align: center;
     margin-top: 10px;
 }
-
 .login-container p a {
     color: #5C2B2E;
     text-decoration: none;
 }
-
 .imgdologin {
     display: block;
     margin: 0 auto 20px;

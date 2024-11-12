@@ -2,29 +2,24 @@
 include './bd/conexao.php';
 session_start();
 
-// Verifica se o usuário já está logado
 if (isset($_SESSION['email'])) {
     header("Location: ../index.php");
     exit();
 }
 
-// Processa o formulário somente se for uma requisição POST
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $email = trim($_POST["email"]);
     $senha = $_POST["senha"];
 
-    // Verifica se o e-mail e a senha foram preenchidos
     if (empty($email) || empty($senha)) {
         echo "Por favor, preencha todos os campos.";
     } else {
-        // Prepara a consulta SQL para buscar a senha hash pelo e-mail
         $sql = "SELECT senha FROM usuarios WHERE email = ?";
         if ($stmt = $conexao->prepare($sql)) {
             $stmt->bind_param("s", $email);
             $stmt->execute();
             $stmt->bind_result($senha_hashed);
 
-            // Verifica se o e-mail existe e se a senha está correta
             if ($stmt->fetch() && password_verify($senha, $senha_hashed)) {
                 $_SESSION['email'] = htmlspecialchars($email);  // Protege a sessão contra injeções
                 header("Location: ../index.php");
@@ -38,7 +33,6 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             echo "Erro ao preparar a consulta. Por favor, tente novamente mais tarde.";
         }
     }
-    // Fecha a conexão com o banco
     $conexao->close();
 }
 ?>
