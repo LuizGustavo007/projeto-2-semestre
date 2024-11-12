@@ -8,23 +8,26 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Planeta Pet</title>
-    <link rel="stylesheet" href="calendario.css">
+    <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
-    <header>
-        <div class="logo">
-            <div class="logo-imagem"></div>
+<header>
+            
+            <div class="logo">
+            <img src="../img/logo.semtextosemfundo.png" alt="Logo Planeta Pet">
             <span>Planeta Pet</span>
-        </div>
-        <nav>
-            <a href="../index.php">Início</a>
-            <a href="../serviços/serviços.php">Serviços</a>
-            <a href="../sobre nos/sobrenos.php">Sobre nós</a>
-            <a href="../calendario/agendamento.php">Calendario</a>
-            <a href="../login/login.php">Login</a>
-        </nav>
-    </header>
+            </div>
+            
+            <nav>
+                <a href="../pagina inicial/paginainicial.php">Início</a>
+                <a href="../serviços/serviços.php">Serviços</a>
+                <a href="../sobre nos/sobrenos.php">Sobre nós</a>
+                <a href="../calendario/agendamento.php">Calendario</a>
+                <a href="../index.php">Login</a>
+                
+            </nav>
+        </header>
 
     <main>
         <h1>Dias Disponíveis :</h1>

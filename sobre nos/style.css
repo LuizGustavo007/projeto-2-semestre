@@ -1,0 +1,165 @@
+/* Reset básico */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Estilo geral */
+html, body {
+    height: 100%; /* Garante que o body ocupe toda a altura da página */
+    font-family: 'Atma', sans-serif;
+    color: #4B0082;
+    display: flex;
+    flex-direction: column; /* Define a direção das flexbox para que o footer seja empurrado para baixo */
+}
+
+/* Header */
+header {
+    background-color: #FF8C00;
+    padding: 10px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+header .logo {
+    display: flex;
+    align-items: center;
+    font-size:xx-large;
+    font-weight: bold;
+}
+
+header .logo img {
+    width: 70px;
+    margin-right: 20px;
+}
+
+header nav a {
+    color: #4B0082;
+    text-decoration: none;
+    margin: 0 15px;
+    font-weight: bold;
+    font-size:x-large;
+    margin-left: 20px;
+    
+}
+
+header nav a:hover {
+    font-size: xx-large;
+}
+
+p{
+    font-family: "Open Sans", sans-serif;
+    font-size: medium;
+    margin-bottom: 0;
+    margin-top: 0;
+}
+
+h4{
+    margin-bottom: 0;
+    font-size: large;
+}
+
+h3{
+    color: #4b1d65;
+    font-size: x-large;
+}
+
+#apres{
+    margin-top: 50px;
+}
+
+
+.sobre {
+    text-align: center;
+    padding: 20px;
+}
+
+.sobre h2 {
+    font-size: 32px;
+    margin-bottom: 20px;
+    text-align: start;
+    color: #4b1d65;
+}
+
+.sobrec {
+    margin: 20px 0;
+    background-color: rgba(217, 217, 217, 0.38);
+    border-radius: 30px;
+}
+
+.sobrec img {
+    height: 600px;
+    width: 350px;
+    display: block;
+    margin: 0 auto 20px auto;
+}
+
+.missao-visao-valores {
+    display: flex;
+    justify-content: space-around;
+    text-align: center;
+    margin-top: 30px;
+    margin-top: 50px;
+}
+
+.missao-visao-valores div {
+    width: 30%;
+}
+
+.missao, .visao, .valores{
+    background-color: rgba(217, 217, 217, 0.38);
+    border-radius: 30px;
+    padding: 20px;
+}
+
+footer {
+    background-color: #4b1d65;
+    color: #fff;
+    padding: 20px;
+    margin-top: 50px;
+}
+
+.footer-content {
+    display: flex;
+    justify-content: space-between;
+}
+
+.contact-info {
+    width: 60%;
+}
+
+.pagamento img {
+    width: 100%;
+    max-width: 300px;
+    height: auto;
+}
+
+/* Responsividade */
+@media (max-width: 992px) {
+    header nav a {
+        font-size: large;
+        margin-left: 10px;
+    }
+
+    footer .info, footer .formas-pagamento {
+        flex: 1 1 100%;
+        text-align: center;
+    }
+}
+
+@media (max-width: 600px) {
+    header nav {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    h1 {
+        font-size: 2.5rem;
+    }
+
+    footer .info, footer .formas-pagamento {
+        flex: 1 1 100%;
+    }
+}

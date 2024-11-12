@@ -1,34 +1,26 @@
 <!DOCTYPE html>
-<html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Sobre nós</title>
-        <link rel="stylesheet" href="sobrenos.css">
-        <link rel="preconnect" href="https://fonts.googleapis.com">
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link href="https://fonts.googleapis.com/css2?family=Atma:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-        <link rel="preconnect" href="https://fonts.googleapis.com">
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap" rel="stylesheet">
-    </head>
-    <body>
-    <header>
-            
-            <div class="logo">
-            <img src="../img/logo.semtextosemfundo.png" alt="Logo Planeta Pet">
-            <span>Planeta Pet</span>
-            </div>
-            
-            <nav>
-                <a href="../index.php">Início</a>
-                <a href="../serviços/serviços.php">Serviços</a>
-                <a href="../sobre nos/sobrenos.php">Sobre nós</a>
-                <a href="../calendario/agendamento.php">Calendario</a>
-                <a href="../login/login.php">Login</a>
-                
-            </nav>
-        </header>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Atma:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <title>Sobre nós - Planeta Pet</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header>
+    <div class="logo">
+        <img src="../img/logo.semtextosemfundo.png" alt="Logo Planeta Pet">
+        <span>Planeta Pet</span>
+    </div>
+    <nav>
+        <a href="../pagina inicial/paginainicial.php">Início</a>
+        <a href="../serviços/serviços.php">Serviços</a>
+        <a href="../sobre nos/sobrenos.php">Sobre nós</a>
+        <a href="../calendario/agendamento.php">Calendário</a>
+        <a href="../index.php">Login</a>
+    </nav>
+</header>
     
         <section class="sobre">
             <h2>Sobre nós</h2>

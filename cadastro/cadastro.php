@@ -1,38 +1,48 @@
 <?php
-include '../conexao.php';
+include '../bd/conexao.php';
+
+$status = '';  // Variável para indicar o status do cadastro
 
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
-    $nome = $_POST["nome"];
-    $email = $_POST["email"];
-    $telefone = $_POST["telefone"];
-    $endereco = $_POST["endereco"];
+    $nome = trim($_POST["nome"]);
+    $email = trim($_POST["email"]);
+    $telefone = trim($_POST["telefone"]);
+    $endereco = trim($_POST["endereco"]);
     $senha = $_POST["senha"];
+    $confirmar_senha = $_POST["confirmar_senha"];
 
-    // Verifica se o email já está cadastrado
-    $sql_check = "SELECT id FROM usuarios WHERE email = ?";
-    $stmt_check = $conexao->prepare($sql_check);
-    $stmt_check->bind_param("s", $email);
-    $stmt_check->execute();
-    $stmt_check->store_result();
-
-    if ($stmt_check->num_rows > 0) {
-        echo "Este email já está cadastrado.";
+    // Verifica se a confirmação de senha coincide
+    if ($senha !== $confirmar_senha) {
+        $status = 'senha_nao_confere';
     } else {
-        // Código para hash e inserção do novo usuário
-        $senha_hashed = password_hash($senha, PASSWORD_DEFAULT);
-        $sql_insert = "INSERT INTO usuarios (nome, email, telefone, endereco, senha) VALUES (?, ?, ?, ?, ?)";
-        $stmt_insert = $conexao->prepare($sql_insert);
-        $stmt_insert->bind_param("sssss", $nome, $email, $telefone, $endereco, $senha_hashed);
-        
-        if ($stmt_insert->execute()) {
-            echo "Cadastro realizado com sucesso!";
-        } else {
-            echo "Erro ao cadastrar: " . $stmt_insert->error;
-        }
+        // Verifica se o e-mail já está cadastrado
+        $sql_check = "SELECT id FROM usuarios WHERE email = ?";
+        $stmt_check = $conexao->prepare($sql_check);
+        $stmt_check->bind_param("s", $email);
+        $stmt_check->execute();
+        $stmt_check->store_result();
 
-        $stmt_insert->close();
+        if ($stmt_check->num_rows > 0) {
+            $status = 'email_existente';
+        } else {
+            // Hash da senha e inserção do novo usuário
+            $senha_hashed = password_hash($senha, PASSWORD_DEFAULT);
+            $sql_insert = "INSERT INTO usuarios (nome, email, telefone, endereco, senha) VALUES (?, ?, ?, ?, ?)";
+            $stmt_insert = $conexao->prepare($sql_insert);
+            $stmt_insert->bind_param("sssss", $nome, $email, $telefone, $endereco, $senha_hashed);
+
+            if ($stmt_insert->execute()) {
+                $status = 'sucesso';
+                header("Location: cadastro.php?status=$status");  // Redireciona com o status de sucesso
+                exit();
+            } else {
+                $status = 'erro_insercao';
+            }
+            $stmt_insert->close();
+        }
+        $stmt_check->close();
     }
-    $stmt_check->close();
+    $conexao->close();
 }
 ?>
 
@@ -43,6 +53,8 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Planeta Pet - Cadastro</title>
     <link rel="stylesheet" href="./style.css">
+    <!-- SweetAlert2 CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
 </head>
 <body>
     <div class="header">
@@ -56,7 +68,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
     <div class="register-container">
         <form id="register-form" action="cadastro.php" method="POST">
-            <img class="imagemlogin"  src="./img/logo_pet-removebg-preview.png" alt="">
+            <img class="imagemlogin" src="./img/logo_pet-removebg-preview.png" alt="Logo">
             <h1>Planeta Pet</h1>
 
             <label for="nome">Nome:</label>
@@ -77,8 +89,61 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             <label for="confirmar_senha">Confirmar Senha:</label>
             <input name="confirmar_senha" type="password" id="confirmar_senha" required><br><br>
 
-            <button type="submit"><a href="../login/login.php">Cadastrar</button>
+            <button type="submit" id="submit-button">Cadastrar</button>
+            <p><a href="../login/login.php">Já tem uma conta? Faça login.</a></p>
         </form>
     </div>
+
+    <!-- SweetAlert2 Script -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script>
+        // Função para exibir alertas com base no status recebido via query string
+        function showAlertBasedOnStatus() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const status = urlParams.get('status');
+
+            switch (status) {
+                case 'sucesso':
+                    Swal.fire({
+                        title: 'Cadastro realizado com sucesso!',
+                        text: 'Você será redirecionado para o login.',
+                        icon: 'success',
+                        confirmButtonText: 'Ok'
+                    }).then(() => {
+                        window.location.href = '../login/login.php';  
+                    });
+                    break;
+                case 'email_existente':
+                    Swal.fire({
+                        title: 'Erro',
+                        text: 'Este e-mail já está cadastrado. Tente fazer login.',
+                        icon: 'warning',
+                        confirmButtonText: 'Ok'
+                    });
+                    break;
+                case 'senha_nao_confere':
+                    Swal.fire({
+                        title: 'Erro',
+                        text: 'As senhas não coincidem. Tente novamente.',
+                        icon: 'error',
+                        confirmButtonText: 'Ok'
+                    });
+                    break;
+                case 'erro_insercao':
+                    Swal.fire({
+                        title: 'Erro',
+                        text: 'Erro ao cadastrar. Tente novamente mais tarde.',
+                        icon: 'error',
+                        confirmButtonText: 'Ok'
+                    });
+                    break;
+                default:
+                    break;
+            }
+        }
+
+        // Chama a função ao carregar a página
+        window.onload = showAlertBasedOnStatus;
+    </script>
 </body>
 </html>

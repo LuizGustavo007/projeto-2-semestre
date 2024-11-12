@@ -1,87 +1,77 @@
+<?php
+include './bd/conexao.php';
+session_start();
+
+// Verifica se o usuário já está logado
+if (isset($_SESSION['email'])) {
+    header("Location: ../index.php");
+    exit();
+}
+
+// Processa o formulário somente se for uma requisição POST
+if ($_SERVER["REQUEST_METHOD"] === "POST") {
+    $email = trim($_POST["email"]);
+    $senha = $_POST["senha"];
+
+    // Verifica se o e-mail e a senha foram preenchidos
+    if (empty($email) || empty($senha)) {
+        echo "Por favor, preencha todos os campos.";
+    } else {
+        // Prepara a consulta SQL para buscar a senha hash pelo e-mail
+        $sql = "SELECT senha FROM usuarios WHERE email = ?";
+        if ($stmt = $conexao->prepare($sql)) {
+            $stmt->bind_param("s", $email);
+            $stmt->execute();
+            $stmt->bind_result($senha_hashed);
+
+            // Verifica se o e-mail existe e se a senha está correta
+            if ($stmt->fetch() && password_verify($senha, $senha_hashed)) {
+                $_SESSION['email'] = htmlspecialchars($email);  // Protege a sessão contra injeções
+                header("Location: ../index.php");
+                exit();
+            } else {
+                echo "Credenciais incorretas. Verifique o e-mail e a senha.";
+            }
+
+            $stmt->close();
+        } else {
+            echo "Erro ao preparar a consulta. Por favor, tente novamente mais tarde.";
+        }
+    }
+    // Fecha a conexão com o banco
+    $conexao->close();
+}
+?>
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Planeta Pet</title>
-    <link rel="stylesheet" href="styles.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Atma:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div class="content-wrapper">
-        <header>
-            
-            <div class="logo">
-            <img src="./img/logo.semtextosemfundo.png" alt="Logo Planeta Pet">
-            <span>Planeta Pet</span>
-            </div>
-            
-            <nav>
-                <a href="./index.php">Início</a>
-                <a href="./serviços/serviços.php">Serviços</a>
-                <a href="./sobre nos/sobrenos.php">Sobre nós</a>
-                <a href="./calendario/agendamento.php">Calendario</a>
-                <a href="./login/login.php">Login</a>
-                
-            </nav>
-        </header>
-
-        <section class="promo">
-            <div class="carousel">
-                
-                <div class="carousel-content">
-                    <a href="./serviços/serviços.php">
-                    <img src="./img/ImgCarrossel.PNG" alt="Promoção de rações">
-                    </a>
-                </div>
-                
-            </div>
-        </section>
-
-        <section class="services">
-            <h2>Tipos de tosa</h2><br>
-            <p>
-                Você sabia que a tosa não serve apenas para deixar os cães mais bonitos?<br>
-                Esse procedimento é muito importante para a saúde e higiene desses animais! <br>
-                Por isso, conhecer os tipos de tosa pode ser muito útil para os cuidados com o pet.
-            </p><br>
-            <div class="service-options">
-                <div class="service-item">
-                    <img src="./img/dogbranco.PNG" alt="Tosa Higiênica">
-                    <h3>Tosa Higiênica</h3>
-                </div>
-                <div class="service-item">
-                    <img src="./img/dogbranco.PNG" alt="Tosa na Tesoura">
-                    <h3>Tosa na tesoura</h3>
-                </div>
-                <div class="service-item">
-                    <img src="./img/dogbranco.PNG" alt="Tosa na Máquina">
-                    <h3>Tosa na máquina</h3>
-                </div>
-            </div>
-        </section>
-    </div>
-    
-    <footer>
-        <div class="footer-content">
-            <div class="working-hours">
-                <h4>Horário de funcionamento</h4>
-                <p>De segunda à sexta-feira</p>
-                <p>das 08h às 19:30h</p>
-            </div>
-            <div class="contact-info">
-                <h4>Entre em contato</h4>
-                <p>Telefone: (12) 12345-6789</p>
-                <p>WhatsApp: (12) 12345-6789</p>
-                <p>Email: contato@planetapet.com</p>
-            </div>
-            <div class="payment-methods">
-                <h4>Formas de pagamento</h4>
-                <img src="./img/formasdepagamento.png" alt="Formas de pagamento">
-            </div>
+    <div class="header">
+        <div class="logo">
+            <img class="imagemheader" src="./img login/logo_pet-removebg-preview.png" alt="Planeta Pet">
         </div>
-    </footer>
+        <div class="titulo">
+            <p>Planeta Pet</p>
+        </div>
+    </div>
+
+    <div class="login-container">
+        <form action="./pagina inicial/paginainicial.php" method="POST">
+            <img class="imgdologin" src="./img login/logo_pet-removebg-preview.png" alt="Planeta Pet Logo" width="60" height="40">
+            <h1>Planeta Pet</h1>
+            <label for="email">E-mail:</label>
+            <input type="email" id="email" name="email" required>
+            <label for="senha">Senha:</label>
+            <input type="password" id="senha" name="senha" required>
+            <button type="submit">Acessar</button>
+            <p><a href="../cadastro/cadastro.php">Novo por aqui? Crie sua conta.</a></p>
+        </form>
+    </div>
 </body>
 </html>
+
