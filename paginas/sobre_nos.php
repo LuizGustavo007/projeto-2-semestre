@@ -11,7 +11,7 @@
 <header>
     <div class="logo">
         <img src="../img/logo.semtextosemfundo.png" alt="Logo Planeta Pet">
-        <span>Planeta Pet</span>
+        <span id="site">Planeta Pet</span>
     </div>
     <nav>
         <a href="pagina_inicial.php">Início</a>
