@@ -112,25 +112,33 @@ header nav a:hover {
     font-size: 20px;
 }
 footer {
-    background-color: #4B0082;
-    color: #FFFFFF;
-    padding: 20px 20px;
+    background-color: #4b1d65; 
+    color: #fff; 
+    padding: 20px;
+    margin-top: 50px;
 }
-footer .footer-content {
+.footer-content {
     display: flex;
     justify-content: space-between;
+    align-items: flex-start;
+}
+.contact-info {
+    width: 50%; 
+    line-height: 1.5;
+}
+.contact-info h4 {
+    font-weight: bold;
+    margin-bottom: 0px;
+}
+.pagamento {
+    width: 30%; 
+    display: flex;
     flex-wrap: wrap;
-    margin: 15px;
+    gap: 10px;
 }
-footer h4 {
-    margin-bottom: 10px;
-}
-footer p {
-    margin-bottom: 5px;
-}
-footer .payment-methods img {
+.pagamento img {
     width: 100%;
-    max-width: 200px;
+    max-width: 300px;
 }
 @media (max-width: 768px) {
     header {

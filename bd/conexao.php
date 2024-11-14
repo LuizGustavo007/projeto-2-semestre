@@ -1,6 +1,6 @@
 <?php
 $host = 'localhost';
-$dbname = 'planeta_pet';
+$dbname = 'planeta_pet(1)';
 $username = 'root';
 $password = ''; // Ajuste a senha conforme necessário
 

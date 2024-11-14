@@ -54,7 +54,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['cliente_id'])) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Agendar Atendimento - Planeta Pet</title>
-    <link rel="stylesheet" href="calendario.css">
+    <link rel="stylesheet" href="../css/calendario.css">
 </head>
 <body>
     <header>
@@ -63,10 +63,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['cliente_id'])) {
             <span>Planeta Pet</span>
         </div>
         <nav>
-            <a href="../pagina inicial/paginainicial.php">Início</a>
-            <a href="../serviços/serviços.php">Serviços</a>
-            <a href="../sobre nos/sobrenos.php">Sobre nós</a>
-            <a href="../calendario/agendamento.php">Calendário</a>
+            <a href="pagina_inicial.php">Início</a>
+            <a href="serviços.php">Serviços</a>
+            <a href="sobre_nos.php">Sobre nós</a>
+            <a href="agendamento.php">Calendário</a>
             <a href="../index.php">Login</a>
         </nav>
     </header>

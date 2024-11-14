@@ -49,13 +49,13 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Planeta Pet - Cadastro</title>
-    <link rel="stylesheet" href="./style.css">
+    <link rel="stylesheet" href="../css/cadastro.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
 </head>
 <body>
     <div class="header">
         <div class="logo">
-            <img src="./img/logo_pet-removebg-preview.png" alt="Planeta Pet">
+            <img src="../img/logo_pet-removebg-preview.png" alt="Planeta Pet">
         </div>
         <div class="titulo">
             <p>Planeta Pet</p>
@@ -64,7 +64,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
     <div class="register-container">
         <form id="register-form" action="cadastro.php" method="POST">
-            <img class="imagemlogin" src="./img/logo_pet-removebg-preview.png" alt="Logo">
+            <img class="imagemlogin" src="../img/logo_pet-removebg-preview.png" alt="Logo">
             <h1>Planeta Pet</h1>
 
             <label for="nome">Nome:</label>

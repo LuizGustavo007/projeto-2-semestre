@@ -42,12 +42,12 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Planeta Pet</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="./css/index.css">
 </head>
 <body>
     <div class="header">
         <div class="logo">
-            <img class="imagemheader" src="./img login/logo_pet-removebg-preview.png" alt="Planeta Pet">
+            <img class="imagemheader" src="./img/logo_pet-removebg-preview.png" alt="Planeta Pet">
         </div>
         <div class="titulo">
             <p>Planeta Pet</p>
@@ -56,14 +56,14 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
     <div class="login-container">
         <form action="./pagina inicial/paginainicial.php" method="POST">
-            <img class="imgdologin" src="./img login/logo_pet-removebg-preview.png" alt="Planeta Pet Logo" width="60" height="40">
+            <img class="imgdologin" src="./img/logo_pet-removebg-preview.png" alt="Planeta Pet Logo" width="60" height="40">
             <h1>Planeta Pet</h1>
             <label for="email">E-mail:</label>
             <input type="email" id="email" name="email" required>
             <label for="senha">Senha:</label>
             <input type="password" id="senha" name="senha" required>
             <button type="submit">Acessar</button>
-            <p><a href="../cadastro/cadastro.php">Novo por aqui? Crie sua conta.</a></p>
+            <p><a href="./paginas/cadastro.php">Novo por aqui? Crie sua conta.</a></p>
         </form>
     </div>
 </body>

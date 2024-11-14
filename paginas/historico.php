@@ -13,10 +13,10 @@
         </div>
         <nav>
             <a href="../index.php">Início</a>
-            <a href="../serviços/serviços.php">Serviços</a>
-            <a href="../sobre nos/sobrenos.php">Sobre nós</a>
-            <a href="../calendario/agendamento.php">Calendario</a>
-            <a href="../login/login.php">Login</a>
+            <a href="serviços.php">Serviços</a>
+            <a href="sobre_nos.php">Sobre nós</a>
+            <a href="agendamento.php">Calendario</a>
+            <a href="login.php">Login</a>
         </nav>
     </header>
 </body>

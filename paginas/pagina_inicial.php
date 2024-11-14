@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Planeta Pet</title>
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="../css/pagina_inicial.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Atma:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -19,10 +19,10 @@
             </div>
             
             <nav>
-                <a href="../pagina inicial/paginainicial.php">Início</a>
-                <a href="../serviços/serviços.php">Serviços</a>
-                <a href="../sobre nos/sobrenos.php">Sobre nós</a>
-                <a href="../calendario/agendamento.php">Calendario</a>
+                <a href="pagina_inicial.php">Início</a>
+                <a href="serviços.php">Serviços</a>
+                <a href="sobre_nos.php">Sobre nós</a>
+                <a href="agendamento.php">Calendario</a>
                 <a href="../index.php">Login</a>
                 
             </nav>
@@ -32,7 +32,7 @@
             <div class="carousel">
                 
                 <div class="carousel-content">
-                    <a href="../serviços/serviços.php">
+                    <a href="serviços.php">
                     <img src="../img/ImgCarrossel.PNG" alt="Promoção de rações">
                     </a>
                 </div>
@@ -66,20 +66,17 @@
     
     <footer>
         <div class="footer-content">
-            <div class="working-hours">
-                <h4>Horário de funcionamento</h4>
-                <p>De segunda à sexta-feira</p>
-                <p>das 08h às 19:30h</p>
-            </div>
             <div class="contact-info">
+                <h4>Horário de funcionamento</h4>
+                <p>De segunda a sexta-feira das 08h às 19:30h</p>
                 <h4>Entre em contato</h4>
                 <p>Telefone: (12) 12345-6789</p>
                 <p>WhatsApp: (12) 12345-6789</p>
                 <p>Email: contato@planetapet.com</p>
             </div>
-            <div class="payment-methods">
-                <h4>Formas de pagamento</h4>
-                <img src="../img/formasdepagamento.png" alt="Formas de pagamento">
+            <div class="pagamento">
+                <h4>Formas de pagamento</h4><br>
+                <img src="../img/pagamento.png" alt="Formas de Pagamento">
             </div>
         </div>
     </footer>

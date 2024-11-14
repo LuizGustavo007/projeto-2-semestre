@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://fonts.googleapis.com/css2?family=Atma:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <title>Planeta Pet - Serviços</title>
-    <link rel="stylesheet" href="servicos.css">
+    <link rel="stylesheet" href="../css/servicos.css">
 </head>
 <body>
 <header>
@@ -14,16 +14,16 @@
         <span>Planeta Pet</span>
     </div>
     <nav>
-        <a href="../pagina inicial/paginainicial.php">Início</a>
-        <a href="../serviços/serviços.php">Serviços</a>
-        <a href="../sobre nos/sobrenos.php">Sobre nós</a>
-        <a href="../calendario/agendamento.php">Calendário</a>
+        <a href="pagina_inicial.php">Início</a>
+        <a href="serviços.php">Serviços</a>
+        <a href="sobre_nos.php">Sobre nós</a>
+        <a href="agendamento.php">Calendário</a>
         <a href="../index.php">Login</a>
     </nav>
 </header>
 
     <h1>Nossos Serviços</h1>
-    <a href="../calendario/agendamento.php">
+    <a href="agendamento.php">
     <div class="services-container">
         <div class="service-box">
             <h3>Tosa Higiênica: R$ 67,00</h3>
@@ -61,25 +61,18 @@
     </section>
     
     <footer>
-        <div class="info">
-            <p><strong>Horário de funcionamento</strong><br>
-                De segunda à sexta-feira das 08h às 19:30h</p>
-            <p><strong>Entre em contato</strong><br>
-                Telefone: (12) 12345-6789<br>
-                WhatsApp: (12) 12345-6789<br>
-                contato@planetapet.com</p>
-        </div>
-        <div class="formas-pagamento">
-            <p>Formas de pagamento</p>
-            <div class="icones-pagamento">
-                <div class="visa"></div>
-                <div class="mastercard"></div>
-                <div class="diners"></div>
-                <div class="amex"></div>
-                <div class="elo"></div>
-                <div class="aura"></div>
-                <div class="hipercard"></div>
-                <div class="boleto"></div>
+        <div class="footer-content">
+            <div class="contact-info">
+                <h4>Horário de funcionamento</h4>
+                <p>De segunda a sexta-feira das 08h às 19:30h</p>
+                <h4>Entre em contato</h4>
+                <p>Telefone: (12) 12345-6789</p>
+                <p>WhatsApp: (12) 12345-6789</p>
+                <p>Email: contato@planetapet.com</p>
+            </div>
+            <div class="pagamento">
+                <h4>Formas de pagamento</h4><br>
+                <img src="../img/pagamento.png" alt="Formas de Pagamento">
             </div>
         </div>
     </footer>

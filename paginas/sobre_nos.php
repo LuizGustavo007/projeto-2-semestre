@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://fonts.googleapis.com/css2?family=Atma:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <title>Sobre nós - Planeta Pet</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="../css/sobre_nos.css">
 </head>
 <body>
 <header>
@@ -14,10 +14,10 @@
         <span>Planeta Pet</span>
     </div>
     <nav>
-        <a href="../pagina inicial/paginainicial.php">Início</a>
-        <a href="../serviços/serviços.php">Serviços</a>
-        <a href="../sobre nos/sobrenos.php">Sobre nós</a>
-        <a href="../calendario/agendamento.php">Calendário</a>
+        <a href="pagina_inicial.php">Início</a>
+        <a href="serviços.php">Serviços</a>
+        <a href="sobre_nos.php">Sobre nós</a>
+        <a href="agendamento.php">Calendário</a>
         <a href="../index.php">Login</a>
     </nav>
 </header>
@@ -25,7 +25,7 @@
         <section class="sobre">
             <h2>Sobre nós</h2>
             <div class="sobrec">
-                <img id="imglogo" src="imgsobrenos/logo.png" alt="Planeta Pet Logo Grande">
+                <img id="imglogo" src="../img/logo.png" alt="Planeta Pet Logo Grande">
             </div>
             <p id="apres">
                 Somos apaixonados por animais, nossa equipe de especialistas está sempre pronta para ajudar.
@@ -58,8 +58,8 @@
                     <p>Email: contato@planetapet.com</p>
                 </div>
                 <div class="pagamento">
-                    <h4>Formas de pagamento</h4>
-                    <img src="imgsobrenos/pagamento.png" alt="Formas de Pagamento">
+                    <h4>Formas de pagamento</h4><br>
+                    <img src="../img/pagamento.png" alt="Formas de Pagamento">
                 </div>
             </div>
         </footer>

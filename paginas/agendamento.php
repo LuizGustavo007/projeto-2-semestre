@@ -41,7 +41,7 @@ foreach ($daysOfWeek as $dia) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Planeta Pet</title>
-    <link rel="stylesheet" href="calendario.css">
+    <link rel="stylesheet" href="../css/calendario.css">
 </head>
 
 <body>
@@ -52,10 +52,10 @@ foreach ($daysOfWeek as $dia) {
         </div>
             
         <nav>
-            <a href="../pagina inicial/paginainicial.php">Início</a>
-            <a href="../serviços/serviços.php">Serviços</a>
-            <a href="../sobre nos/sobrenos.php">Sobre nós</a>
-            <a href="../calendario/agendamento.php">Calendario</a>
+            <a href="pagina_inicial.php">Início</a>
+            <a href="serviços.php">Serviços</a>
+            <a href="sobre_nos.php">Sobre nós</a>
+            <a href="agendamento.php">Calendario</a>
             <a href="../index.php">Login</a>
         </nav>
     </header>
