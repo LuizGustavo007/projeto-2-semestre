@@ -55,7 +55,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     </div>
 
     <div class="login-container">
-        <form action="./pagina inicial/paginainicial.php" method="POST">
+        <form action="./paginas/pagina_inicial.php" method="POST">
             <img class="imgdologin" src="./img/logo_pet-removebg-preview.png" alt="Planeta Pet Logo" width="60" height="40">
             <h1>Planeta Pet</h1>
             <label for="email">E-mail:</label>
