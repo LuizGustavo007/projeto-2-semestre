@@ -1,3 +1,7 @@
+<?php
+session_start(); // Inicia a sessão
+?>
+
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
@@ -5,38 +9,40 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Planeta Pet</title>
     <link rel="stylesheet" href="../css/pagina_inicial.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Atma:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
     <div class="content-wrapper">
         <header>
-            
             <div class="logo">
-            <img src="../img/logo.semtextosemfundo.png" alt="Logo Planeta Pet">
-            <span>Planeta Pet</span>
+                <img src="../img/logo.semtextosemfundo.png" alt="Logo Planeta Pet">
+                <span>Planeta Pet</span>
             </div>
             
             <nav>
                 <a href="pagina_inicial.php">Início</a>
                 <a href="serviços.php">Serviços</a>
                 <a href="sobre_nos.php">Sobre nós</a>
-                <a href="agendamento.php">Calendario</a>
-                
-                
+                <a href="agendamento.php">Calendário</a>
+
+                <?php if (isset($_SESSION['email'])): ?>
+                    <!-- Exibe o ícone de usuário se o usuário estiver logado -->
+                    <a href="perfil.php" class="user-icon">
+                        <img src="../img/user-icon.png" alt="Ícone de usuário" />
+                    </a>
+                    <a href="logout.php" class="logout">Sair</a> <!-- Link para o logout -->
+                <?php else: ?>
+                    <a href="login.php">Login</a> <!-- Link para o login caso não esteja logado -->
+                <?php endif; ?>
             </nav>
         </header>
 
         <section class="promo">
             <div class="carousel">
-                
                 <div class="carousel-content">
                     <a href="serviços.php">
-                    <img src="../img/ImgCarrossel.PNG" alt="Promoção de rações">
+                        <img src="../img/ImgCarrossel.PNG" alt="Promoção de rações">
                     </a>
                 </div>
-                
             </div>
         </section>
 

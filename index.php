@@ -22,7 +22,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
             if ($stmt->fetch() && password_verify($senha, $senha_hashed)) {
                 $_SESSION['email'] = htmlspecialchars($email);  // Protege a sessão contra injeções
-                header("Location: ../index.php");
+                header("Location: ../index.php"); // Redireciona para a página inicial após o login
                 exit();
             } else {
                 echo "Credenciais incorretas. Verifique o e-mail e a senha.";
@@ -41,7 +41,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Planeta Pet</title>
+    <title>Login | Planeta Pet</title>
     <link rel="stylesheet" href="./css/index.css">
 </head>
 <body>
@@ -55,7 +55,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     </div>
 
     <div class="login-container">
-        <form action="./paginas/pagina_inicial.php" method="POST">
+        <form action="login.php" method="POST">
             <img class="imgdologin" src="./img/logo_pet-removebg-preview.png" alt="Planeta Pet Logo" width="60" height="40">
             <h1>Planeta Pet</h1>
             <label for="email">E-mail:</label>
@@ -68,4 +68,3 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     </div>
 </body>
 </html>
-
