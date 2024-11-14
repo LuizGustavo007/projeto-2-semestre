@@ -1,19 +1,17 @@
 <?php
-// Dados da conexão
-$dbname = 'planeta_pet'; // Verifique se o nome do banco de dados está correto
-$username = 'root'; // Verifique o nome do usuário
-$password = ''; // Verifique a senha (se estiver vazia mesmo)
-$host = 'localhost'; // Verifique o host (para servidor local, geralmente é 'localhost')
+$host = 'localhost';
+$dbname = 'planeta_pet';
+$username = 'root';
+$password = ''; // Ajuste a senha conforme necessário
 
-// Criando a conexão com o banco de dados
-$conexao = new mysqli($host, $username, $password, $dbname);
-
-// Verificando se a conexão foi bem-sucedida
-if ($conexao->connect_error) {
-    die("Erro de conexão: " . $conexao->connect_error);
+try {
+    $conexao = new PDO("mysql:host=$host;dbname=$dbname", $username, $password);
+    $conexao->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION); // Ativa o modo de erro para exibir exceções
+} catch (PDOException $e) {
+    echo "Erro na conexão: " . $e->getMessage();
 }
-
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
