@@ -14,7 +14,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     if ($senha !== $confirmar_senha) {
         $status = 'senha_nao_confere';
     } else {
-        $sql_check = "SELECT id FROM usuarios WHERE email = ?";
+        $sql_check = "SELECT id FROM clientes WHERE email = ?";
         $stmt_check = $conexao->prepare($sql_check);
         $stmt_check->bind_param("s", $email);
         $stmt_check->execute();
@@ -24,7 +24,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             $status = 'email_existente';
         } else {
             $senha_hashed = password_hash($senha, PASSWORD_DEFAULT);
-            $sql_insert = "INSERT INTO usuarios (nome, email, telefone, endereco, senha) VALUES (?, ?, ?, ?, ?)";
+            $sql_insert = "INSERT INTO clientes (nome, email, telefone, endereco, senha) VALUES (?, ?, ?, ?, ?)";
             $stmt_insert = $conexao->prepare($sql_insert);
             $stmt_insert->bind_param("sssss", $nome, $email, $telefone, $endereco, $senha_hashed);
 
