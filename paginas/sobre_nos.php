@@ -18,7 +18,7 @@
         <a href="serviços.php">Serviços</a>
         <a href="sobre_nos.php">Sobre nós</a>
         <a href="agendamento.php">Calendário</a>
-        <a href="../index.php">Login</a>
+        
     </nav>
 </header>
     
@@ -35,15 +35,15 @@
             <div class="missao-visao-valores">
                 <div class="missao">
                     <h3>Missão</h3>
-                    <p>Proporcionar soluções tecnológicas inovadoras que transformem a maneira como indivíduos e empresas interagem com o mundo digital.</p>
+                    <p>Proporcionar bem-estar e qualidade de vida aos pets, oferecendo produtos, serviços e atendimento de excelência que garantam a felicidade e saúde dos animais e a satisfação dos seus tutores.</p>
                 </div>
                 <div class="visao">
                     <h3>Visão</h3>
-                    <p>Almejamos estar na vanguarda do desenvolvimento tecnológico, antecipando tendências e oferecendo ferramentas que impulsionem o sucesso e a transformação digital de nossos clientes.</p>
+                    <p>Ser referência no cuidado e na inovação no setor pet, reconhecido por proporcionar uma experiência diferenciada e completa para animais de estimação e seus donos, buscando sempre evolução e responsabilidade social.</p>
                 </div>
                 <div class="valores">
                     <h3>Valores</h3>
-                    <p>União, amizade, praticidade, conforto, felicidade e fidelidade.</p>
+                    <p>Amor pelos Animais, excelência no atendimento, sustentabilidade, inovação, transparência e ética, responsabilidade Social</p>
                 </div>
             </div>
         </section>

@@ -1,0 +1,156 @@
+/* Estilo Geral */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html, body {
+    height: 100%;
+    font-family: 'Atma', sans-serif;
+    color: #4B0082;
+    display: flex;
+    flex-direction: column;
+}
+
+header {
+    background-color: #FF8C00;
+    padding: 10px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+header .logo {
+    display: flex;
+    align-items: center;
+    font-size: xx-large;
+    font-weight: bold;
+}
+
+header .logo img {
+    width: 70px;
+    margin-right: 20px;
+}
+
+header nav a {
+    color: #4B0082;
+    text-decoration: none;
+    margin: 0 15px;
+    font-weight: bold;
+    font-size: x-large;
+}
+
+header nav a:hover {
+    font-size: xx-large;
+}
+
+/* Contêiner do formulário */
+.form-container {
+    max-width: 500px;
+    margin: 40px auto;
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.form-container h2 {
+    text-align: center;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+.form-group label {
+    display: block;
+    font-weight: 600;
+    margin-bottom: 5px;
+}
+
+.form-group select {
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    border-radius: 5px;
+    border: 1px solid #ddd;
+}
+
+.form-group select:focus {
+    border-color: #4CAF50;
+    outline: none;
+}
+
+.btn-submit {
+    width: 100%;
+    padding: 10px;
+    background-color: #4CAF50;
+    color: white;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.btn-submit:hover {
+    background-color: #45a049;
+}
+
+.alert {
+    text-align: center;
+    margin-top: 20px;
+    padding: 15px;
+    border-radius: 5px;
+    font-weight: bold;
+}
+
+.success {
+    background-color: #4CAF50;
+    color: white;
+}
+
+.error {
+    background-color: #f44336;
+    color: white;
+}
+
+/* Rodapé */
+footer {
+    background-color: #333;
+    color: white;
+    padding: 20px;
+    text-align: center;
+    margin-top: 40px;
+}
+
+footer .footer-info p,
+footer .footer-payment p {
+    font-size: 14px;
+    margin-bottom: 10px;
+}
+
+footer .payment-icons {
+    margin-top: 10px;
+}
+
+footer .payment-icons div {
+    display: inline-block;
+    margin: 0 10px;
+    width: 30px;
+    height: 30px;
+    background-color: #ddd;
+    border-radius: 50%;
+}
+
+footer .payment-icons .visa { background-color: #1a1f71; }
+footer .payment-icons .mastercard { background-color: #eb001b; }
+footer .payment-icons .diners { background-color: #009cdb; }
+footer .payment-icons .amex { background-color: #002d72; }
+footer .payment-icons .elo { background-color: #006d26; }
+footer .payment-icons .aura { background-color: #d50032; }
+footer .payment-icons .hipercard { background-color: #f5a71d; }
+footer .payment-icons .boleto { background-color: #f1c232; }

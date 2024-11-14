@@ -1,127 +1,104 @@
 <?php
-include '../bd/conexao.php';
+// Conectar ao banco de dados
+$mysqli = new mysqli('localhost', 'root', '', 'planeta_pet');
 
+// Verificar conexão
+if ($mysqli->connect_error) {
+    die("Connection failed: " . $mysqli->connect_error);
+}
 
-$horarios = array();
-$horaInicial = 8; 
-$minutoInicial = 0; 
+// Função para gerar os horários
+function generate_time_slots() {
+    $times = [];
+    $start_time = strtotime('08:00');
+    $end_time = strtotime('19:30');
+    $interval = 40 * 60; // 40 minutos em segundos
 
-
-for ($i = 0; $i < 15; $i++) {
-    $hora = str_pad($horaInicial, 2, "0", STR_PAD_LEFT);
-    $minuto = str_pad($minutoInicial, 2, "0", STR_PAD_LEFT);
-    $horarios[] = "$hora:$minuto"; 
-    
-    $minutoInicial += 40;
-    if ($minutoInicial >= 60) {
-        $minutoInicial = $minutoInicial - 60;
-        $horaInicial++;
+    while ($start_time <= $end_time) {
+        $times[] = date('H:i', $start_time);
+        $start_time += $interval;
     }
+
+    return $times;
 }
 
-$daysOfWeek = array('Segunda', 'Terça', 'Quarta', 'Quinta', 'Sexta');
-
-
-$agendamentos = array();
-foreach ($daysOfWeek as $dia) {
-    
-    $stmt = $conexao->prepare("SELECT horario, id_cliente FROM agendamentos WHERE dia_semana = :dia");
-    $stmt->bindParam(':dia', $dia, PDO::PARAM_STR); 
+// Carregar os agendamentos existentes
+function get_agendamentos($dia_semana, $horario) {
+    global $mysqli;
+    $sql = "SELECT horario FROM agendamentos WHERE dia_semana = ? AND horario = ?";
+    $stmt = $mysqli->prepare($sql);
+    $stmt->bind_param('ss', $dia_semana, $horario);
     $stmt->execute();
-    $agendamentos[$dia] = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    $result = $stmt->get_result();
+    $agendamentos = [];
+    
+    while ($row = $result->fetch_assoc()) {
+        $agendamentos[] = $row['horario'];
+    }
+
+    return $agendamentos;
 }
+
+$days_of_week = ['segunda', 'terça', 'quarta', 'quinta', 'sexta'];
+$available_times = generate_time_slots(); // Chama a função para gerar os horários
 ?>
 
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt-br">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Atma:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Planeta Pet</title>
+    <title>Agendamento</title>
     <link rel="stylesheet" href="../css/calendario.css">
 </head>
-
 <body>
-    <header> 
-        <div class="logo">
-            <img src="../img/logo.semtextosemfundo.png" alt="Logo Planeta Pet">
-            <span>Planeta Pet</span>
-        </div>
-            
-        <nav>
-            <a href="pagina_inicial.php">Início</a>
-            <a href="serviços.php">Serviços</a>
-            <a href="sobre_nos.php">Sobre nós</a>
-            <a href="agendamento.php">Calendario</a>
-            <a href="../index.php">Login</a>
-        </nav>
-    </header>
+<header>
+    <div class="logo">
+        <img src="../img/logo.semtextosemfundo.png" alt="Logo Planeta Pet">
+        <span>Planeta Pet</span>
+    </div>
+    <nav>
+        <a href="pagina_inicial.php">Início</a>
+        <a href="serviços.php">Serviços</a>
+        <a href="sobre_nos.php">Sobre nós</a>
+        <a href="agendamento.php">Calendário</a>
+        
+    </nav>
+</header>
 
-    <h1>Agendamento de Atendimento</h1>
-    
-    <form method="POST" action="agendar.php">
-        <table>
-            <thead>
-                <tr>
-                    <th>Horário</th>
-                    <?php foreach ($daysOfWeek as $dia) { ?>
-                        <th><?php echo $dia; ?></th>
-                    <?php } ?>
-                </tr>
-            </thead>
-            <tbody>
-                <?php foreach ($horarios as $hora) { ?>
-                    <tr>
-                        <td><?php echo $hora; ?></td>
-                        <?php foreach ($daysOfWeek as $dia) { 
-                            $status = 'available';
-                            foreach ($agendamentos[$dia] as $agendamento) {
-                                if ($agendamento['horario'] == $hora) {
-                                    $status = 'booked';
-                                    break;
-                                }
-                            }
-                        ?>
-                            <td class="<?php echo $status; ?>" 
-                                <?php if ($status == 'available') { ?>
-                                    onclick="window.location.href='agendar.php?dia=<?php echo $dia; ?>&hora=<?php echo $hora; ?>'">
-                                <?php } ?>
-                            >
-                                <?php echo $status == 'available' ? 'Disponível' : 'Agendado'; ?>
-                            </td>
-                        <?php } ?>
-                    </tr>
-                <?php } ?>
-            </tbody>
-        </table>
-    </form>
+<h2>Agendamento de Consultas</h2>
 
-    <footer>
-        <div class="info">
-            <p><strong>Horário de funcionamento</strong><br>
-                De segunda à sexta-feira das 08h às 19:30h</p>
-            <p><strong>Entre em contato</strong><br>
-                Telefone: (12) 12345-6789<br>
-                WhatsApp: (12) 12345-6789<br>
-                contato@planetapet.com</p>
-        </div>
-        <div class="formas-pagamento">
-            <p>Formas de pagamento</p>
-            <div class="icones-pagamento">
-                <div class="visa"></div>
-                <div class="mastercard"></div>
-                <div class="diners"></div>
-                <div class="amex"></div>
-                <div class="elo"></div>
-                <div class="aura"></div>
-                <div class="hipercard"></div>
-                <div class="boleto"></div>
-            </div>
-        </div>
-    </footer>
-    <script src="script.js"></script>
+<table>
+    <thead>
+        <tr>
+            <?php foreach ($days_of_week as $day) { ?>
+                <th><?php echo ucfirst($day); ?></th>
+            <?php } ?>
+        </tr>
+    </thead>
+    <tbody>
+        <?php
+        foreach ($available_times as $time) {
+            echo "<tr>";
+
+            foreach ($days_of_week as $day) {
+                $agendamentos = get_agendamentos($day, $time); // Verifica agendamentos para esse dia e horário
+                $is_available = empty($agendamentos); // Verifica se o horário está disponível
+                $btn_class = $is_available ? 'btn' : 'btn disabled'; // Se disponível, habilita o botão
+                $disabled = $is_available ? '' : 'disabled'; // Desabilita o link se não estiver disponível
+                $url = $is_available ? "agenda.php?dia=$day&hora=$time" : "#"; // Link para o agendamento
+
+                echo "<td><a href=\"$url\" class=\"$btn_class\" $disabled>$time</a></td>";
+            }
+
+            echo "</tr>";
+        }
+        ?>
+    </tbody>
+</table>
+
 </body>
 </html>
