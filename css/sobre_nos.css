@@ -119,3 +119,32 @@ footer {
     width: 100%;
     max-width: 300px;
 }
+
+@media (max-width: 992px) {
+    header nav a {
+        font-size: large;
+        margin-left: 10px;
+    }
+    .services-container {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    footer .info, footer .formas-pagamento {
+        flex: 1 1 100%;
+        text-align: center;
+    }
+}
+@media (max-width: 600px) {
+    header nav {
+        flex-direction: column;
+        align-items: center;
+    }
+    h1 {
+        font-size: 2.5rem;
+    }
+    .services-container {
+        grid-template-columns: 1fr;
+    }
+    footer .info, footer .formas-pagamento {
+        flex: 1 1 100%;
+    }
+}
