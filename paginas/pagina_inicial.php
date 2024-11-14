@@ -68,7 +68,7 @@
         <div class="footer-content">
             <div class="contact-info">
                 <h4>Horário de funcionamento</h4>
-                <p>De segunda a sexta-feira das 08h às 19:30h</p>
+                <p>De segunda a sexta-feira das 08h às 19:30h</p><br>
                 <h4>Entre em contato</h4>
                 <p>Telefone: (12) 12345-6789</p>
                 <p>WhatsApp: (12) 12345-6789</p>
