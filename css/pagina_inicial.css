@@ -58,6 +58,9 @@ nav a.user-icon:hover img {
     transform: scale(1.1); /* Efeito de zoom no ícone quando o usuário passa o mouse */
     transition: transform 0.3s ease;
 }
+.x1{
+    font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
 
 .content-wrapper {
     flex: 1;

@@ -1,7 +1,3 @@
-<?php
-session_start(); // Inicia a sessão
-?>
-
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
@@ -16,57 +12,52 @@ session_start(); // Inicia a sessão
 <body>
     <div class="content-wrapper">
         <header>
+            
             <div class="logo">
-                <img src="../img/logo.semtextosemfundo.png" alt="Logo Planeta Pet">
-                <span>Planeta Pet</span>
+            <img src="../img/logo.semtextosemfundo.png" alt="Logo Planeta Pet">
+            <span>Planeta Pet</span>
             </div>
             
             <nav>
                 <a href="pagina_inicial.php">Início</a>
                 <a href="serviços.php">Serviços</a>
                 <a href="sobre_nos.php">Sobre nós</a>
-                <a href="agendamento.php">Calendário</a>
-
-                <?php if (isset($_SESSION['email'])): ?>
-                    <!-- Exibe o ícone de usuário se o usuário estiver logado -->
-                    <a href="perfil.php" class="user-icon">
-                        <img src="../img/user-icon.png" alt="Ícone de usuário" />
-                    </a>
-                    <a href="logout.php" class="logout">Sair</a> <!-- Link para o logout -->
-                <?php else: ?>
-                    <a href="login.php">Login</a> <!-- Link para o login caso não esteja logado -->
-                <?php endif; ?>
+                <a href="agendamento.php">Calendario</a>
+                
+                
             </nav>
         </header>
 
         <section class="promo">
             <div class="carousel">
+                
                 <div class="carousel-content">
                     <a href="serviços.php">
-                        <img src="../img/ImgCarrossel.PNG" alt="Promoção de rações">
+                    <img src="../img/ImgCarrossel.PNG" alt="Promoção de rações">
                     </a>
                 </div>
+                
             </div>
         </section>
 
         <section class="services">
             <h2>Tipos de tosa</h2><br>
-            <p>
+            <p class="x1">
                 Você sabia que a tosa não serve apenas para deixar os cães mais bonitos?<br>
                 Esse procedimento é muito importante para a saúde e higiene desses animais! <br>
                 Por isso, conhecer os tipos de tosa pode ser muito útil para os cuidados com o pet.
             </p><br>
             <div class="service-options">
                 <div class="service-item">
-                    <img src="../img/dogbranco.PNG" alt="Tosa Higiênica">
+                    <img src="../img/tosehigienica.PNG" alt="Tosa Higiênica">
                     <h3>Tosa Higiênica</h3>
                 </div>
                 <div class="service-item">
-                    <img src="../img/dogbranco.PNG" alt="Tosa na Tesoura">
+                    <img src="../img/tosatesoura.PNG" alt="Tosa na Tesoura">
                     <h3>Tosa na tesoura</h3>
                 </div>
                 <div class="service-item">
-                    <img src="../img/dogbranco.PNG" alt="Tosa na Máquina">
+                    <img src="../img/tosamaquininha.PNG" alt="Tosa na Máquina">
                     <h3>Tosa na máquina</h3>
                 </div>
             </div>
