@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 21-Nov-2024 às 18:10
+-- Tempo de geração: 21-Nov-2024 às 18:34
 -- Versão do servidor: 10.4.27-MariaDB
 -- versão do PHP: 8.2.0
 
@@ -51,9 +51,6 @@ INSERT INTO `agendamentos` (`id_agendamento`, `dia_semana`, `horario`, `id_clien
 CREATE TABLE `clientes` (
   `id_cliente` int(11) NOT NULL,
   `nome_cliente` varchar(150) NOT NULL,
-  `email_cliente` varchar(200) NOT NULL,
-  `telefone_cliente` varchar(20) NOT NULL,
-  `endereco_cliente` varchar(255) NOT NULL,
   `senha` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -61,9 +58,9 @@ CREATE TABLE `clientes` (
 -- Extraindo dados da tabela `clientes`
 --
 
-INSERT INTO `clientes` (`id_cliente`, `nome_cliente`, `email_cliente`, `telefone_cliente`, `endereco_cliente`, `senha`) VALUES
-(1, 'Luiz', 'luiz@gmail.com', '12996215385', 'Rodovia João Amaral Gurgel', '12345'),
-(2, 'Ana', 'ana@gmail.com', '11984567890', 'Rua das Flores, 123', 'senha123');
+INSERT INTO `clientes` (`id_cliente`, `nome_cliente`, `senha`) VALUES
+(1, 'Luiz', '12345'),
+(2, 'Ana', 'senha123');
 
 --
 -- Índices para tabelas despejadas
@@ -80,8 +77,7 @@ ALTER TABLE `agendamentos`
 -- Índices para tabela `clientes`
 --
 ALTER TABLE `clientes`
-  ADD PRIMARY KEY (`id_cliente`),
-  ADD UNIQUE KEY `email_cliente` (`email_cliente`);
+  ADD PRIMARY KEY (`id_cliente`);
 
 --
 -- AUTO_INCREMENT de tabelas despejadas
