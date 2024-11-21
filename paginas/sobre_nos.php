@@ -1,3 +1,11 @@
+<?php
+// session_start();
+
+// if ($_SESSION['email']=="" && $_SESSION['senha']=="") {
+    // header("Location: ../index.php");
+    // exit();
+// }
+?>
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
@@ -18,7 +26,7 @@
         <a href="serviços.php">Serviços</a>
         <a href="sobre_nos.php">Sobre nós</a>
         <a href="agendamento.php">Calendário</a>
-        
+        <a href="../bd/logout.php">Sair<img id="logout" src="../img/sair.png" alt=""></a>
     </nav>
 </header>
     

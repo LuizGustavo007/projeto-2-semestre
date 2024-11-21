@@ -10,6 +10,11 @@ html, body {
     display: flex;
     flex-direction: column;
 }
+#logout{
+    padding-left: 10px;
+    width: 30px;
+    height: 5%;
+}
 header {
     background-color: #FF8C00;
     padding: 10px 20px;

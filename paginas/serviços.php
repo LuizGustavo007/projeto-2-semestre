@@ -18,7 +18,7 @@
         <a href="serviços.php">Serviços</a>
         <a href="sobre_nos.php">Sobre nós</a>
         <a href="agendamento.php">Calendário</a>
-        
+        <a href="../bd/logout.php">Sair<img id="logout" src="../img/sair.png" alt=""></a>
     </nav>
 </header>
 
