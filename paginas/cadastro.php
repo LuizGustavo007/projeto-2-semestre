@@ -1,59 +1,57 @@
 <?php
-include '../bd/conexao.php';
+session_start();
 
-$status = ''; 
+// Conexão com o banco de dados
+$host = 'localhost'; 
+$user = 'root';
+$password = ''; 
+$dbname = 'planeta_pet'; 
 
-if ($_SERVER["REQUEST_METHOD"] === "POST") {
-    $nome = trim($_POST["nome"]);
-    $email = trim($_POST["email"]);
-    $telefone = trim($_POST["telefone"]);
-    $endereco = trim($_POST["endereco"]);
-    $senha = $_POST["senha"];
-    $confirmar_senha = $_POST["confirmar_senha"];
+$conn = new mysqli($host, $user, $password, $dbname);
 
-    if (empty($nome) || empty($email) || empty($telefone) || empty($endereco) || empty($senha) || empty($confirmar_senha)) {
-        $status = 'campos_vazios';
-    } elseif (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-        $status = 'email_invalido';
-    } elseif ($senha !== $confirmar_senha) {
-        $status = 'senha_nao_confere';
+// Verificação de erro na conexão
+if ($conn->connect_error) {
+    die("Conexão falhou: " . $conn->connect_error);
+}
+
+// Verifica se o formulário foi enviado
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    $nome_cliente = mysqli_real_escape_string($conn, $_POST['nome_cliente']);
+    $senha_cliente = mysqli_real_escape_string($conn, $_POST['senha_cliente']);
+
+    // Hash da senha
+    $senha_hash = password_hash($senha_cliente, PASSWORD_DEFAULT);
+
+    // Verifica se o cliente já existe
+    $sql_check = "SELECT id_cliente FROM clientes WHERE nome_cliente = ?";
+    $stmt_check = $conn->prepare($sql_check);
+    $stmt_check->bind_param("s", $nome_cliente);
+    $stmt_check->execute();
+    $stmt_check->store_result();
+
+    if ($stmt_check->num_rows > 0) {
+        // Nome de cliente já cadastrado
+        $_SESSION['status'] = 'nome_existente';
     } else {
-        $sql_check = "SELECT id_cliente FROM clientes WHERE email_cliente = ?";
-        $stmt_check = $conexao->prepare($sql_check);
-        $stmt_check->bind_param("s", $email);
-        $stmt_check->execute();
-        $stmt_check->store_result();
+        // Inserindo o cliente
+        $sql_insert = "INSERT INTO clientes (nome_cliente, senha) VALUES (?, ?)";
+        $stmt_insert = $conn->prepare($sql_insert);
+        $stmt_insert->bind_param("ss", $nome_cliente, $senha_hash);
 
-        if ($stmt_check->num_rows > 0) {
-            $status = 'email_existente';
+        if ($stmt_insert->execute()) {
+            $_SESSION['status'] = 'sucesso';
         } else {
-            $senha_hashed = password_hash($senha, PASSWORD_DEFAULT);
-            $sql_insert = "INSERT INTO clientes (nome_cliente, email_cliente, telefone_cliente, endereco_cliente, senha) VALUES (?, ?, ?, ?, ?)";
-            $stmt_insert = $conexao->prepare($sql_insert);
-            $stmt_insert->bind_param("sssss", $nome, $email, $telefone, $endereco, $senha_hashed);
-
-            if ($stmt_insert->execute()) {
-                echo "<script>
-                    setTimeout(() => {
-                        Swal.fire({
-                            title: 'Cadastro realizado com sucesso!',
-                            text: 'Você será redirecionado para a página de login.',
-                            icon: 'success',
-                            confirmButtonText: 'Ok'
-                        }).then(() => {
-                            window.location.href = '../login/login.php';
-                        });
-                    }, 100);
-                </script>";
-                exit();
-            } else {
-                $status = 'erro_insercao';
-            }
-            $stmt_insert->close();
+            $_SESSION['status'] = 'erro';
+            $_SESSION['erro_msg'] = $conn->error;
         }
-        $stmt_check->close();
+        $stmt_insert->close();
     }
-    $conexao->close();
+    $stmt_check->close();
+    $conn->close();
+
+    // Redireciona para a mesma página para exibir a mensagem
+    header("Location: " . $_SERVER['PHP_SELF']);
+    exit();
 }
 ?>
 
@@ -68,7 +66,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
 <body>
-    <div class="header">
+<div class="header">
         <div class="logo">
             <img src="../img/logo_pet-removebg-preview.png" alt="Planeta Pet">
         </div>
@@ -76,87 +74,49 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             <p>Planeta Pet</p>
         </div>
     </div>
-
     <div class="register-container">
-        <form id="register-form" action="cadastro.php" method="POST">
-            <img class="imagemlogin" src="../img/logo_pet-removebg-preview.png" alt="Logo">
-            <h1>Planeta Pet</h1>
+        <form method="POST">
+        <img class="imagemlogin" src="../img/logo_pet-removebg-preview.png" alt="Logo">
+        <h1>Planeta Pet</h1>
 
-            <label for="nome">Nome:</label>
-            <input type="text" id="nome" name="nome" required><br><br>
-
-            <label for="email">Email:</label>
-            <input type="email" id="email" name="email" required><br><br>
-
-            <label for="telefone">Telefone:</label>
-            <input type="text" id="telefone" name="telefone" required><br><br>
-
-            <label for="endereco">Endereço:</label>
-            <input type="text" id="endereco" name="endereco" required><br><br>
-
-            <label for="senha">Senha:</label>
-            <input name="senha" type="password" id="senha" required><br><br>
-
-            <label for="confirmar_senha">Confirmar Senha:</label>
-            <input name="confirmar_senha" type="password" id="confirmar_senha" required><br><br>
-
-            <button type="submit" id="submit-button">Cadastrar</button>
-            <p><a href="../login/login.php">Já tem uma conta? Faça login.</a></p>
+            <label for="nome_cliente">Nome:</label>
+            <input type="text" id="nome_cliente" name="nome_cliente" required><br><br>
+    
+            <label for="senha_cliente">Senha:</label>
+            <input type="password" id="senha_cliente" name="senha_cliente" required><br><br>
+    
+            <button type="submit">Cadastrar</button>
         </form>
     </div>
 
-    <script>
-        function showAlertBasedOnStatus() {
-            const urlParams = new URLSearchParams(window.location.search);
-            const status = urlParams.get('status');
-
-            switch (status) {
-                case 'email_existente':
-                    Swal.fire({
-                        title: 'Erro',
-                        text: 'Este e-mail já está cadastrado. Tente fazer login.',
-                        icon: 'warning',
-                        confirmButtonText: 'Ok'
-                    });
-                    break;
-                case 'senha_nao_confere':
-                    Swal.fire({
-                        title: 'Erro',
-                        text: 'As senhas não coincidem. Tente novamente.',
-                        icon: 'error',
-                        confirmButtonText: 'Ok'
-                    });
-                    break;
-                case 'email_invalido':
-                    Swal.fire({
-                        title: 'Erro',
-                        text: 'O e-mail inserido é inválido. Tente novamente.',
-                        icon: 'error',
-                        confirmButtonText: 'Ok'
-                    });
-                    break;
-                case 'campos_vazios':
-                    Swal.fire({
-                        title: 'Erro',
-                        text: 'Todos os campos são obrigatórios.',
-                        icon: 'error',
-                        confirmButtonText: 'Ok'
-                    });
-                    break;
-                case 'erro_insercao':
-                    Swal.fire({
-                        title: 'Erro',
-                        text: 'Erro ao cadastrar. Tente novamente mais tarde.',
-                        icon: 'error',
-                        confirmButtonText: 'Ok'
-                    });
-                    break;
-                default:
-                    break;
-            }
-        }
-
-        window.onload = showAlertBasedOnStatus;
-    </script>
+    <?php if (isset($_SESSION['status'])): ?>
+        <script>
+            <?php if ($_SESSION['status'] == 'sucesso'): ?>
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Cadastro realizado com sucesso!',
+                    text: 'O cliente foi registrado com sucesso.',
+                    confirmButtonText: 'Ok'
+                }).then(() => {
+                    window.location.href = '../index.php'; // Redireciona para a página de login
+                });
+            <?php elseif ($_SESSION['status'] == 'nome_existente'): ?>
+                Swal.fire({
+                    icon: 'warning',
+                    title: 'Erro ao cadastrar',
+                    text: 'Este nome já está cadastrado. Tente outro.',
+                    confirmButtonText: 'Ok'
+                });
+            <?php elseif ($_SESSION['status'] == 'erro'): ?>
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Erro ao cadastrar',
+                    text: '<?php echo $_SESSION['erro_msg']; ?>',
+                    confirmButtonText: 'Tentar novamente'
+                });
+            <?php endif; ?>
+        </script>
+        <?php unset($_SESSION['status']); ?>
+    <?php endif; ?>
 </body>
 </html>
