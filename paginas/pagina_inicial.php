@@ -52,11 +52,11 @@
                     <h3>Tosa Higiênica</h3>
                 </div>
                 <div class="service-item">
-                    <img src="../img/tosatesoura.PNG" alt="Tosa na Tesoura">
+                    <img src="../img/tosatesoura1.PNG" alt="Tosa na Tesoura">
                     <h3>Tosa na tesoura</h3>
                 </div>
                 <div class="service-item">
-                    <img src="../img/tosamaquininha.PNG" alt="Tosa na Máquina">
+                    <img src="../img/maquinatosa.PNG" alt="Tosa na Máquina">
                     <h3>Tosa na máquina</h3>
                 </div>
             </div>

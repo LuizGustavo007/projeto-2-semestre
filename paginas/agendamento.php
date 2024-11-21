@@ -22,16 +22,16 @@ function generate_time_slots() {
     return $times;
 }
 
-// Carregar os agendamentos existentes
-function get_agendamentos($dia_semana, $horario) {
+// Carregar os agendamentos existentes para um determinado dia
+function get_agendamentos($dia_semana) {
     global $mysqli;
-    $sql = "SELECT horario FROM agendamentos WHERE dia_semana = ? AND horario = ?";
+    $sql = "SELECT horario FROM agendamentos WHERE dia_semana = ?";
     $stmt = $mysqli->prepare($sql);
-    $stmt->bind_param('ss', $dia_semana, $horario);
+    $stmt->bind_param('s', $dia_semana);
     $stmt->execute();
     $result = $stmt->get_result();
     $agendamentos = [];
-    
+
     while ($row = $result->fetch_assoc()) {
         $agendamentos[] = $row['horario'];
     }
@@ -39,8 +39,16 @@ function get_agendamentos($dia_semana, $horario) {
     return $agendamentos;
 }
 
-$days_of_week = ['segunda', 'terça', 'quarta', 'quinta', 'sexta'];
+// Gerar todos os horários
 $available_times = generate_time_slots(); // Chama a função para gerar os horários
+$days_of_week = ['segunda', 'terça', 'quarta', 'quinta', 'sexta'];
+$agendamentos_por_dia = [];
+
+// Preencher o array de agendamentos por dia
+foreach ($days_of_week as $day) {
+    $agendamentos_por_dia[$day] = get_agendamentos($day);
+}
+
 ?>
 
 <!DOCTYPE html>
@@ -53,6 +61,36 @@ $available_times = generate_time_slots(); // Chama a função para gerar os hor�
     <link href="https://fonts.googleapis.com/css2?family=Atma:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <title>Agendamento</title>
     <link rel="stylesheet" href="../css/calendario.css">
+    <script>
+        // Passando as informações de agendamentos e horários disponíveis para o JavaScript
+        const agendamentosPorDia = <?php echo json_encode($agendamentos_por_dia); ?>;
+        const availableTimes = <?php echo json_encode($available_times); ?>;
+
+        function updateAvailableTimes() {
+            const day = document.getElementById('dia').value;
+            const timeSelect = document.getElementById('horario');
+            const availableTimesForDay = availableTimes.filter(time => {
+                return !agendamentosPorDia[day].includes(time); // Filtra os horários disponíveis
+            });
+
+            // Limpar os horários anteriores
+            timeSelect.innerHTML = '<option value="">Escolha o horário</option>';
+            
+            if (day) {
+                availableTimesForDay.forEach(function(time) {
+                    const option = document.createElement('option');
+                    option.value = time;
+                    option.textContent = time;
+                    timeSelect.appendChild(option);
+                });
+
+                // Habilitar o dropdown de horários
+                timeSelect.disabled = false;
+            } else {
+                timeSelect.disabled = true;
+            }
+        }
+    </script>
 </head>
 <body>
 <header>
@@ -65,40 +103,25 @@ $available_times = generate_time_slots(); // Chama a função para gerar os hor�
         <a href="serviços.php">Serviços</a>
         <a href="sobre_nos.php">Sobre nós</a>
         <a href="agendamento.php">Calendário</a>
-        
     </nav>
 </header>
 
 <h2>Agendamento de Consultas</h2>
 
-<table>
-    <thead>
-        <tr>
-            <?php foreach ($days_of_week as $day) { ?>
-                <th><?php echo ucfirst($day); ?></th>
-            <?php } ?>
-        </tr>
-    </thead>
-    <tbody>
-        <?php
-        foreach ($available_times as $time) {
-            echo "<tr>";
+<!-- Seletor de Dia -->
+<label for="dia">Escolha o dia:</label>
+<select id="dia" name="dia" onchange="updateAvailableTimes()">
+    <option value="">Selecione o dia</option>
+    <?php foreach ($days_of_week as $day) { ?>
+        <option value="<?php echo $day; ?>"><?php echo ucfirst($day); ?></option>
+    <?php } ?>
+</select>
 
-            foreach ($days_of_week as $day) {
-                $agendamentos = get_agendamentos($day, $time); // Verifica agendamentos para esse dia e horário
-                $is_available = empty($agendamentos); // Verifica se o horário está disponível
-                $btn_class = $is_available ? 'btn' : 'btn disabled'; // Se disponível, habilita o botão
-                $disabled = $is_available ? '' : 'disabled'; // Desabilita o link se não estiver disponível
-                $url = $is_available ? "agenda.php?dia=$day&hora=$time" : "#"; // Link para o agendamento
-
-                echo "<td><a href=\"$url\" class=\"$btn_class\" $disabled>$time</a></td>";
-            }
-
-            echo "</tr>";
-        }
-        ?>
-    </tbody>
-</table>
+<!-- Seletor de Horário -->
+<label for="horario">Escolha o horário:</label>
+<select id="horario" name="horario" disabled>
+    <option value="">Escolha o horário</option>
+</select>
 
 </body>
 </html>
