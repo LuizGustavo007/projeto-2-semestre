@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 21-Nov-2024 às 15:44
+-- Tempo de geração: 21-Nov-2024 às 18:10
 -- Versão do servidor: 10.4.27-MariaDB
 -- versão do PHP: 8.2.0
 
@@ -24,6 +24,27 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
+-- Estrutura da tabela `agendamentos`
+--
+
+CREATE TABLE `agendamentos` (
+  `id_agendamento` int(11) NOT NULL,
+  `dia_semana` varchar(50) NOT NULL,
+  `horario` time NOT NULL,
+  `id_cliente` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Extraindo dados da tabela `agendamentos`
+--
+
+INSERT INTO `agendamentos` (`id_agendamento`, `dia_semana`, `horario`, `id_cliente`) VALUES
+(1, 'segunda', '08:00:00', 1),
+(2, 'terça', '10:40:00', 1);
+
+-- --------------------------------------------------------
+
+--
 -- Estrutura da tabela `clientes`
 --
 
@@ -33,7 +54,7 @@ CREATE TABLE `clientes` (
   `email_cliente` varchar(200) NOT NULL,
   `telefone_cliente` varchar(20) NOT NULL,
   `endereco_cliente` varchar(255) NOT NULL,
-  `senha` int(15) NOT NULL
+  `senha` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -41,43 +62,36 @@ CREATE TABLE `clientes` (
 --
 
 INSERT INTO `clientes` (`id_cliente`, `nome_cliente`, `email_cliente`, `telefone_cliente`, `endereco_cliente`, `senha`) VALUES
-(2, 'Luiz', 'luiz@gmail.com', '12996215385', 'Rodovia João amaral gurgel', 12345);
-
--- --------------------------------------------------------
-
---
--- Estrutura da tabela `usuarios`
---
-
-CREATE TABLE `usuarios` (
-  `id` int(11) NOT NULL,
-  `nome` varchar(150) NOT NULL,
-  `email` varchar(200) NOT NULL,
-  `telefone` varchar(20) DEFAULT NULL,
-  `endereco` varchar(255) DEFAULT NULL,
-  `senha` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+(1, 'Luiz', 'luiz@gmail.com', '12996215385', 'Rodovia João Amaral Gurgel', '12345'),
+(2, 'Ana', 'ana@gmail.com', '11984567890', 'Rua das Flores, 123', 'senha123');
 
 --
 -- Índices para tabelas despejadas
 --
 
 --
+-- Índices para tabela `agendamentos`
+--
+ALTER TABLE `agendamentos`
+  ADD PRIMARY KEY (`id_agendamento`),
+  ADD KEY `id_cliente` (`id_cliente`);
+
+--
 -- Índices para tabela `clientes`
 --
 ALTER TABLE `clientes`
-  ADD PRIMARY KEY (`id_cliente`);
-
---
--- Índices para tabela `usuarios`
---
-ALTER TABLE `usuarios`
-  ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `email` (`email`);
+  ADD PRIMARY KEY (`id_cliente`),
+  ADD UNIQUE KEY `email_cliente` (`email_cliente`);
 
 --
 -- AUTO_INCREMENT de tabelas despejadas
 --
+
+--
+-- AUTO_INCREMENT de tabela `agendamentos`
+--
+ALTER TABLE `agendamentos`
+  MODIFY `id_agendamento` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT de tabela `clientes`
@@ -86,10 +100,14 @@ ALTER TABLE `clientes`
   MODIFY `id_cliente` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
--- AUTO_INCREMENT de tabela `usuarios`
+-- Restrições para despejos de tabelas
 --
-ALTER TABLE `usuarios`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+
+--
+-- Limitadores para a tabela `agendamentos`
+--
+ALTER TABLE `agendamentos`
+  ADD CONSTRAINT `agendamentos_ibfk_1` FOREIGN KEY (`id_cliente`) REFERENCES `clientes` (`id_cliente`) ON DELETE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
