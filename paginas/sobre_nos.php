@@ -2,8 +2,8 @@
 // session_start();
 
 // if ($_SESSION['email']=="" && $_SESSION['senha']=="") {
-    // header("Location: ../index.php");
-    // exit();
+//     header("Location: ../index.php");
+//     exit();
 // }
 ?>
 <!DOCTYPE html>
@@ -37,7 +37,7 @@
             </div>
             <p id="apres">
                 Somos apaixonados por animais, nossa equipe de especialistas está sempre pronta para ajudar.
-                Oferecemos serviços de banho e tosa. Venha nos visitar e descubra por que somos o favorito
+                Oferecemos serviços de banho e tosa. <br> Venha nos visitar e descubra por que somos o favorito
                 dos amantes de pets!
             </p>
             <div class="missao-visao-valores">

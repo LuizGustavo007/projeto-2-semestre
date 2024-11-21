@@ -37,7 +37,6 @@ header nav a:hover {
 #logout{
     padding-left: 10px;
     width: 30px;
-    height: 5%;
 }
 p{
     font-family: "Open Sans", sans-serif;
@@ -126,7 +125,7 @@ footer {
 }
 
 @media (max-width: 992px) {
-    header nav a, #logout {
+    header nav a {
         font-size: large;
         margin-left: 10px;
     }
