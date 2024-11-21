@@ -1,4 +1,7 @@
 <?php
+// Iniciar a sessão para verificar o login (caso esteja usando um sistema de autenticação)
+session_start();
+
 // Conectar ao banco de dados
 $mysqli = new mysqli('localhost', 'root', '', 'planeta_pet');
 
@@ -7,32 +10,60 @@ if ($mysqli->connect_error) {
     die("Connection failed: " . $mysqli->connect_error);
 }
 
-// Obter os parâmetros da URL
-$dia_semana = $_GET['dia'];
-$horario = $_GET['hora'];
+// Função para realizar o agendamento
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    $dia = $_POST['dia'];
+    $hora = $_POST['hora'];
+    $id_cliente = $_POST['id_cliente']; // O ID do cliente
 
-// ID do cliente, que pode ser obtido após login, por exemplo
-$id_cliente = 1;  // Exemplo: você pode pegar isso de um formulário de login ou sessão
+    // Inserir o agendamento no banco de dados
+    $sql = "INSERT INTO agendamentos (id_cliente, dia_semana, horario) VALUES (?, ?, ?)";
+    $stmt = $mysqli->prepare($sql);
+    $stmt->bind_param('iss', $id_cliente, $dia, $hora);
 
-// Verificar se o cliente existe na tabela
-$sql_cliente = "SELECT id_cliente FROM clientes WHERE id_cliente = ?";
-$stmt_cliente = $mysqli->prepare($sql_cliente);
-$stmt_cliente->bind_param('i', $id_cliente);
-$stmt_cliente->execute();
-$stmt_cliente->store_result();
+    if ($stmt->execute()) {
+        echo "Agendamento realizado com sucesso!";
+    } else {
+        echo "Erro ao realizar o agendamento: " . $stmt->error;
+    }
 
-// Se o cliente não existir, mostrar um erro
-if ($stmt_cliente->num_rows == 0) {
-    die("Erro: Cliente não encontrado!");
+    $stmt->close();
 }
 
-// Inserir o agendamento no banco de dados
-$sql = "INSERT INTO agendamentos (id_cliente, dia_semana, horario, data_agendamento) VALUES (?, ?, ?, CURDATE())";
-$stmt = $mysqli->prepare($sql);
-$stmt->bind_param('iss', $id_cliente, $dia_semana, $horario);
-$stmt->execute();
+// Verifica se o id_cliente está presente na URL ou na sessão
+if (isset($_SESSION['id_cliente'])) {
+    $id_cliente = $_SESSION['id_cliente']; // Recupera o ID do cliente da sessão
+} elseif (isset($_GET['id_cliente'])) {
+    $id_cliente = $_GET['id_cliente']; // Recupera o ID do cliente pela URL
+} else {
+    // Se o id_cliente não for encontrado, exibe um erro ou redireciona para login
+    echo "Erro: id_cliente não fornecido.";
+    exit;
+}
 
-// Redirecionar para a página de sucesso
-header("Location: sucesso.php");
-exit;
+// Pega o dia e hora passados na URL (parâmetros)
+$dia = $_GET['dia'];
+$hora = $_GET['hora'];
+
 ?>
+
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agendamento</title>
+</head>
+<body>
+    <h2>Confirmar Agendamento</h2>
+    <form method="POST" action="">
+        <!-- Campos ocultos para passar o id_cliente, dia e hora para o servidor -->
+        <input type="hidden" name="id_cliente" value="<?php echo htmlspecialchars($id_cliente); ?>"> <!-- ID do cliente -->
+        <input type="hidden" name="dia" value="<?php echo htmlspecialchars($dia); ?>"> <!-- Dia da semana -->
+        <input type="hidden" name="hora" value="<?php echo htmlspecialchars($hora); ?>"> <!-- Horário escolhido -->
+        
+        <p>Você deseja agendar para: <strong><?php echo ucfirst($dia) . " às " . $hora; ?></strong>?</p>
+        <button type="submit">Confirmar Agendamento</button>
+    </form>
+</body>
+</html>

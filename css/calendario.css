@@ -3,13 +3,16 @@
     padding: 0;
     box-sizing: border-box;
 }
+
 html, body {
-    height: 100%; 
+    height: 100%;
     font-family: 'Atma', sans-serif;
     color: #4B0082;
     display: flex;
     flex-direction: column;
+    background-color: #f7f7f7; /* Fundo claro */
 }
+
 header {
     background-color: #FF8C00;
     padding: 10px 20px;
@@ -17,127 +20,126 @@ header {
     justify-content: space-between;
     align-items: center;
 }
+
 header .logo {
     display: flex;
     align-items: center;
-    font-size:xx-large;
+    font-size: xx-large;
     font-weight: bold;
 }
+
 header .logo img {
     width: 70px;
     margin-right: 20px;
 }
+
 header nav a {
     color: #4B0082;
     text-decoration: none;
     margin: 0 15px;
     font-weight: bold;
-    font-size:x-large;
-    margin-left: 20px;
-    
+    font-size: x-large;
 }
+
 header nav a:hover {
     font-size: xx-large;
 }
-main {
-    flex: 1;
-    padding: 40px 20px;
-    background-color: #ffffff;
-    max-width: 1200px;
-    margin: 20px auto;
-    border-radius: 10px;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-}
-
-h1, h2 {
-    color: rgba(82, 15, 105, 1);
-    font-size: 2.2rem;
-    margin-bottom: 20px;
-    text-align: center;
-    font-weight: 700;
-}
 
 h2 {
-    font-size: 1.8rem;
+    text-align: center;
+    color: #4B0082;
+    font-size: 2rem;
+    margin: 20px 0;
+    font-weight: 700;
 }
 
 table {
     width: 100%;
     border-collapse: collapse;
-    background-color: #fff;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
     margin-top: 30px;
-    border-radius: 10px;
+    background-color: #fff;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
     overflow: hidden;
 }
 
 table th, table td {
     border: 1px solid #ddd;
-    text-align: center;
     padding: 15px;
+    text-align: center;
     font-size: 1rem;
+    font-weight: 500;
+    transition: background-color 0.3s, transform 0.3s ease;
 }
 
+/* Estilo do cabeçalho */
 table th {
-    background-color: rgba(251, 156, 3, 1);
+    background-color: #4B0082; /* Roxo escuro para o cabeçalho */
     color: #fff;
     text-transform: uppercase;
     font-size: 1.1rem;
 }
 
-table td {
-    cursor: pointer;
-    font-size: 1rem;
-    transition: background-color 0.3s, transform 0.3s;
-}
-
+/* Células com horários disponíveis */
 table td.available {
-    background-color: #A2DFF7; /* Azul Claro para disponível */
+    background-color: #FFB84D; /* Laranja suave para células disponíveis */
     color: #4B0082;
+    transition: background-color 0.3s ease;
 }
 
+/* Células com horários já agendados */
 table td.booked {
-    background-color: #FF6F61; /* Vermelho para agendado */
+    background-color: #FF6F61; /* Vermelho suave */
     color: #fff;
 }
 
+/* Hover nas células */
 table td:hover {
-    background-color: #fce0b2;
+    background-color: #FFE1B3;
     transform: scale(1.05);
 }
 
+/* Hover nas células disponíveis */
 table td.available:hover {
-    background-color: #90CBE6; /* Azul Claro escuro ao passar o mouse */
+    background-color: #FF9E3D; /* Laranja mais intenso */
     transform: scale(1.05);
 }
 
+/* Hover nas células agendadas */
 table td.booked:hover {
-    background-color: #FF4C39; /* Vermelho escuro ao passar o mouse */
+    background-color: #FF4C39; /* Vermelho mais escuro */
     transform: scale(1.05);
 }
 
-/* Estilos de Botões */
-.btn {
-    display: block;
-    padding: 10px;
-    text-align: center;
-    border-radius: 8px;
+/* Botões dentro da tabela */
+table td a {
+    display: inline-block;
+    padding: 8px 12px;
+    background-color: #FF8C00; /* Laranja intenso para os botões */
     color: #fff;
-    font-weight: 600;
-    background-color: #FF8C00;
     text-decoration: none;
-    transition: background-color 0.3s ease, transform 0.3s ease;
+    border-radius: 5px;
+    font-weight: 600;
+    transition: background-color 0.3s, transform 0.3s ease;
 }
 
-.btn:hover {
-    background-color: #FF6A00;
+/* Hover nos botões */
+table td a:hover {
+    background-color: #D97600; /* Laranja escuro */
     transform: scale(1.05);
 }
 
-.btn.disabled {
-    background-color: #D3D3D3;
-    pointer-events: none;
+/* Células desabilitadas */
+table td.disabled {
+    background-color: #D3D3D3; /* Cor cinza para células desabilitadas */
     color: #777;
+    pointer-events: none;
+}
+
+/* Botão desabilitado */
+table td a.disabled {
+    background-color: #B0B0B0;
+    cursor: not-allowed;
 }
 
 /* Responsividade */
@@ -165,7 +167,7 @@ table td.booked:hover {
     }
 }
 
-@media (max-width: 600px) {
+@media (max-width: 768px) {
     header nav {
         flex-direction: column;
         align-items: center;
@@ -185,5 +187,24 @@ table td.booked:hover {
 
     form select, form button {
         font-size: 0.9rem;
+    }
+}
+
+@media (max-width: 600px) {
+    header nav {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    h1 {
+        font-size: 1.3rem;
+    }
+
+    h2 {
+        font-size: 1.3rem;
+    }
+
+    table {
+        font-size: 0.8rem;
     }
 }
