@@ -1,22 +1,18 @@
 <?php
 session_start();
 
-// Conectar ao banco de dados
 $mysqli = new mysqli('localhost', 'root', '', 'planeta_pet');
 
-// Verificar conexão
 if ($mysqli->connect_error) {
     die("Connection failed: " . $mysqli->connect_error);
 }
 
-// Verificar autenticação do cliente
 if (!isset($_SESSION['id_cliente'])) {
     die('Cliente não autenticado.');
 }
 
-$id_cliente = $_SESSION['id_cliente']; // ID do cliente autenticado
+$id_cliente = $_SESSION['id_cliente'];
 
-// Buscar os agendamentos do cliente
 $sql = "SELECT dia_semana, horario FROM agendamentos WHERE id_cliente = ?";
 $stmt = $mysqli->prepare($sql);
 $stmt->bind_param('i', $id_cliente);
@@ -28,7 +24,6 @@ while ($row = $result->fetch_assoc()) {
     $agendamentos[] = $row;
 }
 ?>
-
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -37,6 +32,13 @@ while ($row = $result->fetch_assoc()) {
     <title>Meus Agendamentos</title>
 </head>
 <body>
+    <nav>
+        <a href="pagina_inicial.php">Início</a>
+        <a href="serviços.php">Serviços</a>
+        <a href="sobre_nos.php">Sobre nós</a>
+        <a href="agendamento.php">Calendário</a>
+        <a href="../bd/logout.php">Sair<img id="logout" src="../img/sair.png" alt=""></a>
+    </nav>
     <h2>Meus Agendamentos</h2>
     <?php if (count($agendamentos) > 0): ?>
         <ul>

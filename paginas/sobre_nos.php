@@ -1,10 +1,10 @@
 <?php
-// session_start();
+session_start();
 
-// if ($_SESSION['email']=="" && $_SESSION['senha']=="") {
-//     header("Location: ../index.php");
-//     exit();
-// }
+if ($_SESSION['nome_sessao']=="" && $_SESSION['senha_sessao']=="") {
+    header("Location: ../index.php");
+    exit();
+}
 ?>
 <!DOCTYPE html>
 <html lang="pt-BR">

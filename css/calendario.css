@@ -3,16 +3,14 @@
     padding: 0;
     box-sizing: border-box;
 }
-
 html, body {
     height: 100%;
     font-family: 'Atma', sans-serif;
     color: #4B0082;
     display: flex;
     flex-direction: column;
-    background-color: #f7f7f7; /* Fundo claro */
+    background-color: #f7f7f7; 
 }
-
 header {
     background-color: #FF8C00;
     padding: 10px 20px;
@@ -20,19 +18,16 @@ header {
     justify-content: space-between;
     align-items: center;
 }
-
 header .logo {
     display: flex;
     align-items: center;
     font-size: xx-large;
     font-weight: bold;
 }
-
 header .logo img {
     width: 70px;
     margin-right: 20px;
 }
-
 header nav a {
     color: #4B0082;
     text-decoration: none;
@@ -40,11 +35,9 @@ header nav a {
     font-weight: bold;
     font-size: x-large;
 }
-
 header nav a:hover {
     font-size: xx-large;
 }
-
 h2 {
     text-align: center;
     color: #4B0082;
@@ -52,21 +45,17 @@ h2 {
     margin: 20px 0;
     font-weight: 700;
 }
-
-/* Container principal para os seletores */
 .selector-container {
     display: flex;
     justify-content: center;
     gap: 20px;
     margin-bottom: 30px;
 }
-
 .selector-container label {
     font-size: 1.1rem;
     font-weight: 500;
     color: #4B0082;
 }
-
 .selector-container select {
     padding: 10px;
     font-size: 1rem;
@@ -76,12 +65,9 @@ h2 {
     background-color: #fff;
     transition: border-color 0.3s ease;
 }
-
 .selector-container select:focus {
     border-color: #4B0082;
 }
-
-/* Estilo para o botão de agendamento */
 button {
     background-color: #FF8C00;
     color: #fff;
@@ -92,30 +78,22 @@ button {
     cursor: pointer;
     transition: background-color 0.3s ease;
 }
-
 button:hover {
     background-color: #D97600;
 }
-
-/* Estilo dos horários disponíveis */
 #horario {
     width: 250px;
     text-align: center;
 }
-
 #horario:disabled {
     background-color: #D3D3D3;
     cursor: not-allowed;
 }
-
-/* Estilo do container de horários */
 #horario-container {
     display: flex;
     flex-direction: column;
     align-items: center;
 }
-
-/* Estilos de Tabela - caso queira usar a tabela como alternativa */
 table {
     width: 100%;
     border-collapse: collapse;
@@ -125,7 +103,6 @@ table {
     border-radius: 8px;
     overflow: hidden;
 }
-
 table th, table td {
     border: 1px solid #ddd;
     padding: 15px;
@@ -134,139 +111,104 @@ table th, table td {
     font-weight: 500;
     transition: background-color 0.3s, transform 0.3s ease;
 }
-
-/* Estilo do cabeçalho */
 table th {
-    background-color: #4B0082; /* Roxo escuro para o cabeçalho */
+    background-color: #4B0082;
     color: #fff;
     text-transform: uppercase;
     font-size: 1.1rem;
 }
-
-/* Células com horários disponíveis */
 table td.available {
-    background-color: #FFB84D; /* Laranja suave para células disponíveis */
+    background-color: #FFB84D;
     color: #4B0082;
     transition: background-color 0.3s ease;
 }
-
-/* Células com horários já agendados */
 table td.booked {
-    background-color: #FF6F61; /* Vermelho suave */
+    background-color: #FF6F61; 
     color: #fff;
 }
-
-/* Hover nas células */
 table td:hover {
     background-color: #FFE1B3;
     transform: scale(1.05);
 }
-
-/* Hover nas células disponíveis */
 table td.available:hover {
-    background-color: #FF9E3D; /* Laranja mais intenso */
+    background-color: #FF9E3D; 
     transform: scale(1.05);
 }
-
-/* Hover nas células agendadas */
 table td.booked:hover {
-    background-color: #FF4C39; /* Vermelho mais escuro */
+    background-color: #FF4C39; 
     transform: scale(1.05);
 }
-
-/* Botões dentro da tabela */
 table td a {
     display: inline-block;
     padding: 8px 12px;
-    background-color: #FF8C00; /* Laranja intenso para os botões */
+    background-color: #FF8C00;
     color: #fff;
     text-decoration: none;
     border-radius: 5px;
     font-weight: 600;
     transition: background-color 0.3s, transform 0.3s ease;
 }
-
-/* Hover nos botões */
 table td a:hover {
-    background-color: #D97600; /* Laranja escuro */
+    background-color: #D97600;
     transform: scale(1.05);
 }
-
-/* Células desabilitadas */
 table td.disabled {
-    background-color: #D3D3D3; /* Cor cinza para células desabilitadas */
+    background-color: #D3D3D3;
     color: #777;
     pointer-events: none;
 }
-
-/* Botão desabilitado */
 table td a.disabled {
     background-color: #B0B0B0;
     cursor: not-allowed;
 }
-
-/* Responsividade */
 @media (max-width: 992px) {
     header nav a {
         font-size: 1rem;
         margin-left: 10px;
     }
-
     main table {
         font-size: 0.9rem;
     }
-
     h2 {
         font-size: 1.6rem;
     }
-
     footer .info, footer .formas-pagamento {
         flex: 1 1 100%;
         text-align: center;
     }
-
     form {
         width: 90%;
     }
 }
-
 @media (max-width: 768px) {
     header nav {
         flex-direction: column;
         align-items: center;
     }
-
     h1 {
         font-size: 1.5rem;
     }
-
     h2 {
         font-size: 1.4rem;
     }
-
     main table {
         font-size: 0.85rem;
     }
-
     form select, form button {
         font-size: 0.9rem;
     }
 }
-
 @media (max-width: 600px) {
     header nav {
         flex-direction: column;
         align-items: center;
     }
-
     h1 {
         font-size: 1.3rem;
     }
-
     h2 {
         font-size: 1.3rem;
     }
-
     table {
         font-size: 0.8rem;
     }

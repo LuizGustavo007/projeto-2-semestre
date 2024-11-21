@@ -1,13 +1,10 @@
 <?php
-// Conectar ao banco de dados
 $mysqli = new mysqli('localhost', 'root', '', 'planeta_pet');
 
-// Verificar conexão
 if ($mysqli->connect_error) {
     die("Connection failed: " . $mysqli->connect_error);
 }
 
-// Função para gerar os horários
 function generate_time_slots() {
     $times = [];
     $start_time = strtotime('08:00');
@@ -22,7 +19,6 @@ function generate_time_slots() {
     return $times;
 }
 
-// Carregar os agendamentos existentes para um determinado dia
 function get_agendamentos($dia_semana) {
     global $mysqli;
     $sql = "SELECT horario FROM agendamentos WHERE dia_semana = ?";
@@ -39,12 +35,10 @@ function get_agendamentos($dia_semana) {
     return $agendamentos;
 }
 
-// Gerar todos os horários
 $available_times = generate_time_slots(); // Chama a função para gerar os horários
 $days_of_week = ['segunda', 'terça', 'quarta', 'quinta', 'sexta'];
 $agendamentos_por_dia = [];
 
-// Preencher o array de agendamentos por dia
 foreach ($days_of_week as $day) {
     $agendamentos_por_dia[$day] = get_agendamentos($day);
 }
@@ -61,7 +55,6 @@ foreach ($days_of_week as $day) {
     <title>Agendamento</title>
     <link rel="stylesheet" href="../css/calendario.css">
     <script>
-        // Passando as informações de agendamentos e horários disponíveis para o JavaScript
         const agendamentosPorDia = <?php echo json_encode($agendamentos_por_dia); ?>;
         const availableTimes = <?php echo json_encode($available_times); ?>;
 
@@ -69,10 +62,9 @@ foreach ($days_of_week as $day) {
             const day = document.getElementById('dia').value;
             const timeSelect = document.getElementById('horario');
             const availableTimesForDay = availableTimes.filter(time => {
-                return !agendamentosPorDia[day].includes(time); // Filtra os horários disponíveis
+                return !agendamentosPorDia[day].includes(time); 
             });
 
-            // Limpar os horários anteriores
             timeSelect.innerHTML = '<option value="">Escolha o horário</option>';
             
             if (day) {
@@ -83,13 +75,11 @@ foreach ($days_of_week as $day) {
                     timeSelect.appendChild(option);
                 });
 
-                // Habilitar o dropdown de horários
                 timeSelect.disabled = false;
             } else {
                 timeSelect.disabled = true;
             }
 
-            // Habilitar ou desabilitar o botão de prosseguir
             toggleProceedButton();
         }
 
@@ -98,7 +88,6 @@ foreach ($days_of_week as $day) {
             const time = document.getElementById('horario').value;
             const proceedButton = document.getElementById('proceed-button');
             
-            // O botão só ficará habilitado se o dia e o horário forem selecionados
             if (day && time) {
                 proceedButton.disabled = false;
             } else {
@@ -123,7 +112,6 @@ foreach ($days_of_week as $day) {
 
 <h2>Agendamento de Consultas</h2>
 
-<!-- Seletor de Dia -->
 <div class="selector-container">
     <label for="dia">Escolha o dia:</label>
     <select id="dia" name="dia" onchange="updateAvailableTimes()">
@@ -134,7 +122,6 @@ foreach ($days_of_week as $day) {
     </select>
 </div>
 
-<!-- Seletor de Horário -->
 <div class="selector-container">
     <label for="horario">Escolha o horário:</label>
     <select id="horario" name="horario" disabled onchange="toggleProceedButton()">
@@ -142,7 +129,6 @@ foreach ($days_of_week as $day) {
     </select>
 </div>
 
-<!-- Botão de Prosseguir -->
 <div class="selector-container">
 <button id="proceed-button" disabled 
     onclick="location.href='confirmar_agendamento.php?dia=' + document.getElementById('dia').value + '&hora=' + document.getElementById('horario').value;">

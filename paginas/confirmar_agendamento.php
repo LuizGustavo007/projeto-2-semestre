@@ -1,20 +1,17 @@
 <?php
 session_start();
 
-// Conectar ao banco de dados
 $mysqli = new mysqli('localhost', 'root', '', 'planeta_pet');
 
-// Verificar conexão
 if ($mysqli->connect_error) {
     die("Connection failed: " . $mysqli->connect_error);
 }
 
-// Verificar autenticação do cliente
 if (!isset($_SESSION['id_cliente'])) {
     die('Cliente não autenticado.');
 }
 
-$id_cliente = $_SESSION['id_cliente']; // ID do cliente autenticado
+$id_cliente = $_SESSION['id_cliente'];
 $dia = $_GET['dia'] ?? '';
 $hora = $_GET['hora'] ?? '';
 
@@ -22,7 +19,6 @@ if (!$dia || !$hora) {
     die('Dia e horário são obrigatórios.');
 }
 
-// Verificar se o horário já está reservado
 $sql = "SELECT * FROM agendamentos WHERE dia_semana = ? AND horario = ?";
 $stmt = $mysqli->prepare($sql);
 $stmt->bind_param('ss', $dia, $hora);
@@ -34,7 +30,6 @@ if ($result->num_rows > 0) {
 }
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    // Inserir o agendamento com o ID do cliente
     $sql = "INSERT INTO agendamentos (dia_semana, horario, id_cliente) VALUES (?, ?, ?)";
     $stmt = $mysqli->prepare($sql);
     $stmt->bind_param('ssi', $dia, $hora, $id_cliente);
@@ -47,7 +42,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 }
 ?>
-
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>

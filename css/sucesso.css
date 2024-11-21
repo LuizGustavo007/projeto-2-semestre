@@ -1,10 +1,8 @@
-/* Estilo Geral */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
-
 html, body {
     height: 100%;
     font-family: 'Atma', sans-serif;
@@ -16,20 +14,17 @@ html, body {
     align-items: center;
     text-align: center;
 }
-
 h2 {
     font-size: 2.5rem;
     color: #28a745;
     margin-bottom: 20px;
     font-weight: 700;
 }
-
 p {
     font-size: 1.2rem;
     color: #333;
     margin-bottom: 40px;
 }
-
 a.btn {
     display: inline-block;
     padding: 15px 30px;
@@ -41,21 +36,17 @@ a.btn {
     border-radius: 8px;
     transition: background-color 0.3s ease, transform 0.3s ease;
 }
-
 a.btn:hover {
     background-color: #FF6A00;
     transform: scale(1.05);
 }
-
 @media (max-width: 600px) {
     h2 {
         font-size: 2rem;
     }
-
     p {
         font-size: 1rem;
     }
-
     a.btn {
         font-size: 1rem;
         padding: 12px 25px;

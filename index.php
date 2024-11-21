@@ -1,84 +1,53 @@
 <?php
-include './bd/conexao.php'; // Conexão com o banco de dados
+include './bd/conexao.php';
 session_start();
 
-if (isset($_SESSION['email_cliente'])) {
-    // Usuário já logado
-    header("Location: ../index.php");
-    exit();
-}
-
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
-    $email = trim($_POST["email"]);
-    $senha = $_POST["senha"];
+    $nome = $_POST['nome'];
+    $senha = $_POST['senha']; 
 
-    if (empty($email) || empty($senha)) {
-        $error_message = "Por favor, preencha todos os campos.";
-    } else {
-        // Preparar consulta segura
-        $sql = "SELECT id_cliente, nome_cliente, senha FROM clientes WHERE email_cliente = ?";
-        if ($stmt = $conexao->prepare($sql)) {
-            $stmt->bind_param("s", $email);
-            $stmt->execute();
-            $stmt->bind_result($id_cliente, $nome_cliente, $senha_hashed);
+    $query = "SELECT * FROM clientes WHERE nome_clientes = '$nome'";
+    $result = mysqli_query($connection, $query);
 
-            if ($stmt->fetch()) {
-                if (password_verify($senha, $senha_hashed)) {
-                    // Login bem-sucedido
-                    $_SESSION['id_cliente'] = $id_cliente;
-                    $_SESSION['nome_cliente'] = htmlspecialchars($nome_cliente);
-                    $_SESSION['email_cliente'] = htmlspecialchars($email);
+    if ($result->num_rows > 0) {
+        $usuario_logado = mysqli_fetch_assoc($result);
 
-                    header("Location: ../index.php");
-                    exit();
-                } else {
-                    $error_message = "Senha incorreta. Tente novamente.";
-                }
-            } else {
-                $error_message = "E-mail não encontrado.";
-            }
-
-            $stmt->close();
+        if (password_verify($senha, $usuario_logado['pass_usuario'])) {
+            $_SESSION['usuario_sessao'] = $usuario_logado['nome_clientes'];
+            $_SESSION['tipo_sessao'] = $usuario_logado['tipo_clientes'];
+            header('Location: ./paginas/pagina_inicial.php');
         } else {
-            $error_message = "Erro ao processar sua solicitação. Tente novamente mais tarde.";
+            echo 'Senha incorreta';
         }
+    } else {
+        echo 'Usuário não encontrado';
     }
-    $conexao->close();
 }
 ?>
-
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login | Planeta Pet</title>
+    <title>Portal História</title>
+    <link rel="icon" href="../img/img_para_colocar_no_title-removebg-preview.png" type="image/x-icon">
     <link rel="stylesheet" href="./css/index.css">
 </head>
 <body>
-    <div class="header">
-        <div class="logo">
-            <img class="imagemheader" src="./img/logo_pet-removebg-preview.png" alt="Planeta Pet">
-        </div>
-        <div class="titulo">
-            <p>Planeta Pet</p>
-        </div>
-    </div>
-
-    <div class="login-container">
+    <div class="login">
+        <img src="./img/logo_semfundo.png" alt="Logo do Portal História" class="logo">
+        
         <form action="" method="POST">
-            <img class="imgdologin" src="./img/logo_pet-removebg-preview.png" alt="Planeta Pet Logo" width="60" height="40">
-            <h1>Planeta Pet</h1>
-            <?php if (!empty($error_message)): ?>
-                <p style="color: red;"><?= htmlspecialchars($error_message); ?></p>
-            <?php endif; ?>
-            <label for="email">E-mail:</label>
-            <input type="email" id="email" name="email" required>
+            <label for="nome">Nome:</label>
+            <input name="nome" type="text" required>
+
             <label for="senha">Senha:</label>
-            <input type="password" id="senha" name="senha" required>
-            <button type="submit">Acessar</button>
-            <p><a href="./paginas/cadastro.php">Novo por aqui? Crie sua conta.</a></p>
+            <input name="senha" type="password" required>
+
+            <button type="submit">Enviar</button>
+
+            <a id="cadastro" href="./paginas/cadastro.php">Cadastre-se</a>
         </form>
-    </div>  
+    </div>
 </body>
 </html>

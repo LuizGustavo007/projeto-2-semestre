@@ -1,3 +1,11 @@
+<?php
+session_start();
+
+if ($_SESSION['nome_sessao']=="" && $_SESSION['senha_sessao']=="") {
+    header("Location: ../index.php");
+    exit();
+}
+?>
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
