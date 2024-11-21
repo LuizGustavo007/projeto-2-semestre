@@ -48,7 +48,6 @@ $agendamentos_por_dia = [];
 foreach ($days_of_week as $day) {
     $agendamentos_por_dia[$day] = get_agendamentos($day);
 }
-
 ?>
 
 <!DOCTYPE html>
@@ -89,6 +88,22 @@ foreach ($days_of_week as $day) {
             } else {
                 timeSelect.disabled = true;
             }
+
+            // Habilitar ou desabilitar o botão de prosseguir
+            toggleProceedButton();
+        }
+
+        function toggleProceedButton() {
+            const day = document.getElementById('dia').value;
+            const time = document.getElementById('horario').value;
+            const proceedButton = document.getElementById('proceed-button');
+            
+            // O botão só ficará habilitado se o dia e o horário forem selecionados
+            if (day && time) {
+                proceedButton.disabled = false;
+            } else {
+                proceedButton.disabled = true;
+            }
         }
     </script>
 </head>
@@ -109,19 +124,31 @@ foreach ($days_of_week as $day) {
 <h2>Agendamento de Consultas</h2>
 
 <!-- Seletor de Dia -->
-<label for="dia">Escolha o dia:</label>
-<select id="dia" name="dia" onchange="updateAvailableTimes()">
-    <option value="">Selecione o dia</option>
-    <?php foreach ($days_of_week as $day) { ?>
-        <option value="<?php echo $day; ?>"><?php echo ucfirst($day); ?></option>
-    <?php } ?>
-</select>
+<div class="selector-container">
+    <label for="dia">Escolha o dia:</label>
+    <select id="dia" name="dia" onchange="updateAvailableTimes()">
+        <option value="">Selecione o dia</option>
+        <?php foreach ($days_of_week as $day) { ?>
+            <option value="<?php echo $day; ?>"><?php echo ucfirst($day); ?></option>
+        <?php } ?>
+    </select>
+</div>
 
 <!-- Seletor de Horário -->
-<label for="horario">Escolha o horário:</label>
-<select id="horario" name="horario" disabled>
-    <option value="">Escolha o horário</option>
-</select>
+<div class="selector-container">
+    <label for="horario">Escolha o horário:</label>
+    <select id="horario" name="horario" disabled onchange="toggleProceedButton()">
+        <option value="">Escolha o horário</option>
+    </select>
+</div>
+
+<!-- Botão de Prosseguir -->
+<div class="selector-container">
+<button id="proceed-button" disabled 
+    onclick="location.href='confirmar_agendamento.php?dia=' + document.getElementById('dia').value + '&hora=' + document.getElementById('horario').value;">
+    Prosseguir
+</button>
+</div>
 
 </body>
 </html>

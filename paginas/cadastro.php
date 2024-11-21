@@ -11,10 +11,14 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $senha = $_POST["senha"];
     $confirmar_senha = $_POST["confirmar_senha"];
 
-    if ($senha !== $confirmar_senha) {
+    if (empty($nome) || empty($email) || empty($telefone) || empty($endereco) || empty($senha) || empty($confirmar_senha)) {
+        $status = 'campos_vazios';
+    } elseif (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+        $status = 'email_invalido';
+    } elseif ($senha !== $confirmar_senha) {
         $status = 'senha_nao_confere';
     } else {
-        $sql_check = "SELECT id FROM clientes WHERE email = ?";
+        $sql_check = "SELECT id_cliente FROM clientes WHERE email_cliente = ?";
         $stmt_check = $conexao->prepare($sql_check);
         $stmt_check->bind_param("s", $email);
         $stmt_check->execute();
@@ -24,13 +28,23 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             $status = 'email_existente';
         } else {
             $senha_hashed = password_hash($senha, PASSWORD_DEFAULT);
-            $sql_insert = "INSERT INTO clientes (nome, email, telefone, endereco, senha) VALUES (?, ?, ?, ?, ?)";
+            $sql_insert = "INSERT INTO clientes (nome_cliente, email_cliente, telefone_cliente, endereco_cliente, senha) VALUES (?, ?, ?, ?, ?)";
             $stmt_insert = $conexao->prepare($sql_insert);
             $stmt_insert->bind_param("sssss", $nome, $email, $telefone, $endereco, $senha_hashed);
 
             if ($stmt_insert->execute()) {
-                $status = 'sucesso';
-                header("Location: cadastro.php?status=$status");  
+                echo "<script>
+                    setTimeout(() => {
+                        Swal.fire({
+                            title: 'Cadastro realizado com sucesso!',
+                            text: 'Você será redirecionado para a página de login.',
+                            icon: 'success',
+                            confirmButtonText: 'Ok'
+                        }).then(() => {
+                            window.location.href = '../login/login.php';
+                        });
+                    }, 100);
+                </script>";
                 exit();
             } else {
                 $status = 'erro_insercao';
@@ -51,6 +65,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     <title>Planeta Pet - Cadastro</title>
     <link rel="stylesheet" href="../css/cadastro.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
 <body>
     <div class="header">
@@ -90,23 +105,12 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         </form>
     </div>
 
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script>
         function showAlertBasedOnStatus() {
             const urlParams = new URLSearchParams(window.location.search);
             const status = urlParams.get('status');
 
             switch (status) {
-                case 'sucesso':
-                    Swal.fire({
-                        title: 'Cadastro realizado com sucesso!',
-                        text: 'Você será redirecionado para o login.',
-                        icon: 'success',
-                        confirmButtonText: 'Ok'
-                    }).then(() => {
-                        window.location.href = '../login/login.php';  
-                    });
-                    break;
                 case 'email_existente':
                     Swal.fire({
                         title: 'Erro',
@@ -119,6 +123,22 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                     Swal.fire({
                         title: 'Erro',
                         text: 'As senhas não coincidem. Tente novamente.',
+                        icon: 'error',
+                        confirmButtonText: 'Ok'
+                    });
+                    break;
+                case 'email_invalido':
+                    Swal.fire({
+                        title: 'Erro',
+                        text: 'O e-mail inserido é inválido. Tente novamente.',
+                        icon: 'error',
+                        confirmButtonText: 'Ok'
+                    });
+                    break;
+                case 'campos_vazios':
+                    Swal.fire({
+                        title: 'Erro',
+                        text: 'Todos os campos são obrigatórios.',
                         icon: 'error',
                         confirmButtonText: 'Ok'
                     });
