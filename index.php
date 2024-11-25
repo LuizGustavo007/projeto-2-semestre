@@ -1,28 +1,41 @@
 <?php
-include './bd/conexao.php';
 session_start();
+include './bd/conexao.php';
+
+$mensagem = '';
 
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
-    $nome = mysqli_real_escape_string($conexao, $_POST['nome']);
-    $senha = mysqli_real_escape_string($conexao, $_POST['senha']); 
+   
+    $nome = trim($_POST['nome']);
+    $senha = trim($_POST['senha']);
 
-    // Atualização para tabela e colunas do banco de dados atualizado
-    $query = "SELECT * FROM clientes WHERE nome_cliente = '$nome'";
-    $result = mysqli_query($conexao, $query);
+    try {
+        
+        $sql = "SELECT * FROM clientes WHERE nome_cliente = :nome";
+        $stmt = $conexao->prepare($sql);
+        $stmt->bindValue(':nome', $nome, PDO::PARAM_STR);
+        $stmt->execute();
 
-    if ($result && $result->num_rows > 0) {
-        $usuario_logado = mysqli_fetch_assoc($result);
+       
+        if ($stmt->rowCount() > 0) {
+            $usuario_logado = $stmt->fetch(PDO::FETCH_ASSOC);
 
-        // Validação da senha
-        if (password_verify($senha, $usuario_logado['senha'])) {
-            $_SESSION['usuario_sessao'] = $usuario_logado['nome_cliente']; // Nome do cliente
-            header('Location: ./paginas/pagina_inicial.php'); // Redireciona após login bem-sucedido
-            exit();
+            
+            if ($senha === $usuario_logado['senha']) {
+                $_SESSION['id_cliente'] = $usuario_logado['id_cliente'];
+                $_SESSION['usuario_sessao'] = $usuario_logado['nome_cliente'];
+
+                
+                header('Location: ../paginas/pagina_inicial.php');
+                exit();
+            } else {
+                $mensagem = "Senha incorreta.";
+            }
         } else {
-            echo '<script>alert("Senha incorreta.");</script>';
+            $mensagem = "Usuário não encontrado.";
         }
-    } else {
-        echo '<script>alert("Usuário não encontrado.");</script>';
+    } catch (PDOException $e) {
+        $mensagem = "Erro ao conectar ao banco de dados: " . $e->getMessage();
     }
 }
 ?>
@@ -31,24 +44,32 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Portal História - Login</title>
+    <title>Planeta Pet - Login</title>
     <link rel="icon" href="../img/img_para_colocar_no_title-removebg-preview.png" type="image/x-icon">
     <link rel="stylesheet" href="./css/index.css">
 </head>
 <body>
     <div class="login">
-        <img src="../img/logo_semfundo.png" alt="" class="logo">
+        <img src="../img/logo_semfundo.png" alt="Logo Planeta Pet" class="logo">
+        <h2>Login</h2>
         
         <form action="" method="POST">
+            
+            <?php if (!empty($mensagem)): ?>
+                <div class="error-message"><?= htmlspecialchars($mensagem); ?></div>
+            <?php endif; ?>
+
             <label for="nome">Nome:</label>
-            <input name="nome" type="text" required>
+            <input name="nome" type="text" required placeholder="Digite seu nome">
 
             <label for="senha">Senha:</label>
-            <input name="senha" type="password" required>
+            <input name="senha" type="password" required placeholder="Digite sua senha">
 
-            <button type="submit">Enviar</button>
+            <button type="submit">Entrar</button>
 
-            <a id="cadastro" href="../paginas/cadastro.php">Cadastre-se</a>
+            <p class="register-link">
+                Não possui uma conta? <a href="../paginas/cadastro.php">Cadastre-se</a>
+            </p>
         </form>
     </div>
 </body>
