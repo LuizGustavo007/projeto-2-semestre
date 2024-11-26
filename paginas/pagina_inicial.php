@@ -40,7 +40,7 @@ if ($_SESSION['id_cliente']=="" && $_SESSION['usuario_sessao']=="") {
                 
                 <div class="carousel-content">
                     <a href="serviços.php">
-                    <img src="../img/ImgCarrossel.PNG" alt="Promoção de rações">
+                    <img src="../img/carrosel.PNG" alt="Promoção de rações">
                     </a>
                 </div>
                 
@@ -48,7 +48,7 @@ if ($_SESSION['id_cliente']=="" && $_SESSION['usuario_sessao']=="") {
         </section>
 
         <section class="services">
-            <h2>Tipos de tosa</h2><br>
+            <h2>Tipos de tosa</h2><br><br>
             <p class="x1">
                 Você sabia que a tosa não serve apenas para deixar os cães mais bonitos?<br>
                 Esse procedimento é muito importante para a saúde e higiene desses animais! <br>
@@ -56,7 +56,7 @@ if ($_SESSION['id_cliente']=="" && $_SESSION['usuario_sessao']=="") {
             </p><br>
             <div class="service-options">
                 <div class="service-item">
-                    <img src="../img/tosehigienica.PNG" alt="Tosa Higiênica">
+                    <img src="../img/dogfeliz.PNG" alt="Tosa Higiênica">
                     <h3>Tosa Higiênica</h3>
                 </div>
                 <div class="service-item">
