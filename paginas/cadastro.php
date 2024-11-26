@@ -62,28 +62,32 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Planeta Pet - Cadastro</title>
     <link rel="stylesheet" href="../css/cadastro.css">
+    <link href="https://fonts.googleapis.com/css2?family=Atma:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
 <body>
-<div class="header">
-        <div class="logo">
-            <img src="../img/logo_pet-removebg-preview.png" alt="Planeta Pet">
+    <header>
+        <div class="logo-nav">
+            <img src="../img/logo_pet-removebg-preview.png" alt="Logo Planeta Pet">
+            <span id="site">Planeta Pet</span>
         </div>
-        <div class="titulo">
-            <p>Planeta Pet</p>
-        </div>
-    </div>
-    <div class="register-container">
-        <form method="POST">
-        <img class="imagemlogin" src="../img/logo_pet-removebg-preview.png" alt="Logo">
+    </header>
+
+    <div class="cadastro">
+        <img src="../img/logo_pet-removebg-preview.png" alt="Logo do Planeta Pet" class="logo">
         <h1>Planeta Pet</h1>
 
+        <form method="POST">
+            <?php if (!empty($mensagem)): ?>
+                <div class="error-message"><?= htmlspecialchars($mensagem); ?></div>
+            <?php endif; ?>
+
             <label for="nome_cliente">Nome:</label>
-            <input type="text" id="nome_cliente" name="nome_cliente" required><br><br>
+            <input type="text" id="nome_cliente" name="nome_cliente" required placeholder="Digite seu nome"><br><br>
     
             <label for="senha_cliente">Senha:</label>
-            <input type="password" id="senha_cliente" name="senha_cliente" required><br><br>
+            <input type="password" id="senha_cliente" name="senha_cliente" required placeholder="Digite sua senha"><br><br>
     
             <button type="submit">Cadastrar</button>
         </form>

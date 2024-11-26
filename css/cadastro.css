@@ -1,84 +1,131 @@
-*{
+* {
     margin: 0;
     padding: 0;
+    box-sizing: border-box;
 }
 
 body {
     font-family: Arial, sans-serif;
-    background-color: #FFFFFF;
-    margin: 0;
-    padding: 0;
-}
-
-.header {
-    background-color: #FFA500;
-    height: 70px;
+    background-color: #f2f2f2; 
     display: flex;
-    align-items: center;
-    padding-left: 20px;
+    justify-content: center; /* Centraliza o conteúdo horizontalmente */
+    align-items: center;     /* Centraliza o conteúdo verticalmente */
+    height: 100vh; 
+    margin: 0;
+    padding-top: 80px; /* Adiciona um padding para que o conteúdo não fique embaixo do header */
+    flex-direction: column;
 }
 
-.header .logo img {
-    height: 40px;
+header {
+    background-color: #FF8C00;
+    padding: 10px 20px; /* Ajusta o padding do header */
+    position: fixed; /* Fixa o header no topo */
+    top: 0;  
+    left: 0;
+    right: 0;
+    display: flex;
+    align-items: center; /* Alinha os itens do header verticalmente */
+    z-index: 1000;
 }
 
-.register-container {
+header .logo-nav {
+    display: flex;
+    align-items: center; /* Alinha verticalmente a logo e o texto */
+}
+
+header .logo-nav img {
+    max-width: 90px; /* Ajusta o tamanho do logo */
+    margin-right: 10px; /* Adiciona um espaçamento entre o logo e o texto */
+}
+
+header #site {
+    font-family: "Atma", system-ui;
+    font-size: 3rem; /* Aumenta o tamanho do texto do site */
+    font-weight: bold;
+    color: #4b1d65;
+    margin-left: 10px; /* Garante que o nome do site tenha espaçamento à esquerda */
+}
+
+.cadastro {
+    background-color: #FFCC80;
     width: 350px;
-    margin: 150px;
-    padding: 40px;
-    background-color: rgba(251,156, 3, 1);
+    padding: 30px 40px 40px 40px; /* Ajusta o padding para ficar mais próximo do topo */
     border-radius: 10px;
-    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
+    margin-top: 10px; /* Menor margem para ficar mais próximo do topo */
+    display: flex;
+    flex-direction: column;
+    gap: 20px; /* Adiciona um espaçamento entre os elementos do formulário */
+    justify-content: center; /* Garante que o conteúdo dentro da div de login fique centralizado */
+    align-items: center; /* Garante que o conteúdo dentro da div de login fique centralizado */
 }
 
-.register-container h1 {
-    font-family: 'Comic Sans MS', cursive, sans-serif;
-    color: #5C2B2E;
-    text-align: center;
+.cadastro .logo {
+    max-width: 80%;
+    margin-bottom: 20px; /* Adiciona espaçamento abaixo da logo */
 }
 
-.imagemlogin {
-    width: 70;
-    height: 50;
+h1 {
+    font-family: "Atma", system-ui;
+    color: #4b1d65; 
+    font-size: xx-large;
+    margin-bottom: 20px;
 }
 
-.register-container label {
+.error-message {
+    color: red;
     font-size: 14px;
-    color: #5C2B2E;
+    margin-bottom: 15px;
 }
 
-.register-container input[type="text"],
-.register-container input[type="tel"],
-.register-container input[type="email"],
-.register-container input[type="password"] {
+.cadastro label {
+    font-size: 14px;
+    font-weight: bold;
+    margin-bottom: 5px;
+    text-align: left; /* Alinha os rótulos à esquerda */
+}
+
+.cadastro input[type="text"],
+.cadastro input[type="password"] {
     width: 100%;
     padding: 10px;
-    margin: 10px 0;
     border: 1px solid #ccc;
     border-radius: 5px;
-    box-sizing: border-box;
+    font-size: 16px;
 }
 
-.register-container button {
+button[type="submit"] {
     width: 100%;
-    padding: 10px;
+    padding: 12px;
     background-color: #FFF8E1;
     border: none;
     border-radius: 5px;
     cursor: pointer;
     font-weight: bold;
     color: #5C2B2E;
+    font-size: 16px;
+    display: flex;
+    justify-content: center; /* Centraliza o conteúdo horizontalmente */
+    align-items: center;
 }
 
-.register-container button:hover {
-    background-color: #FFD54F;
+button[type="submit"]:hover {
+    background-color: #FFD54F; 
 }
 
-.titulo p{
-    color: #47055e;
+.register-link {
+    margin-top: 10px;
+    font-size: 14px;
+    display: flex;
+    justify-content: center; /* Centraliza o conteúdo horizontalmente */
+    align-items: center;
+}
+
+.register-link a {
+    color: #5C2B2E;
     text-decoration: none;
-    margin-left: 5px;
-    font-family: "Atma", system-ui;
-    font-weight: 1000;
-    font-style: normal;
+}
+
+.register-link a:hover {
+    text-decoration: underline;
 }

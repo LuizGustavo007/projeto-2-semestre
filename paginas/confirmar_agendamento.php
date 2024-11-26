@@ -1,6 +1,14 @@
 <?php
 session_start();
 
+if ($_SESSION['id_cliente']=="" && $_SESSION['usuario_sessao']=="") {
+    header("Location: ../index.php");
+    exit();
+}
+?>
+<?php
+session_start();
+
 
 if (!isset($_SESSION['id_cliente'])) {
     header('Location: ../index.php?error=login_required'); 

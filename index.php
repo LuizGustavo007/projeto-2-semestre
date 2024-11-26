@@ -53,12 +53,21 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Planeta Pet - Login</title>
+    <link href="https://fonts.googleapis.com/css2?family=Atma:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="icon" href="../img/img_para_colocar_no_title-removebg-preview.png" type="image/x-icon">
     <link rel="stylesheet" href="./css/index.css">
 </head>
 <body>
+<header>
+    <div class="logo-nav">
+        <img src="./img/logo_pet-removebg-preview.png" alt="Logo Planeta Pet">
+        <span id="site">Planeta Pet</span>
+    </div>
+</header>
+
     <div class="login">
-        <img src="./img/logo_semfundo.png" alt="Logo do Planeta Pet" class="logo">
+        <img src="./img/logo_pet-removebg-preview.png" alt="Logo do Planeta Pet" class="logo">
+        <h1>Planeta Pet</h1>
 
         <form action="" method="POST">
             <?php if (!empty($mensagem)): ?>
