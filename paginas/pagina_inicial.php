@@ -35,7 +35,7 @@ session_start();
                 
                 <div class="carousel-content">
                     <a href="serviços.php">
-                    <img src="../img/carrosel.PNG" alt="Promoção de rações">
+                    <img src="../img/imagemcarrosel.PNG" alt="Promoção de rações">
                     </a>
                 </div>
                 
