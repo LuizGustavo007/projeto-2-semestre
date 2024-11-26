@@ -67,7 +67,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     <form method="POST">
         <button type="submit">Confirmar Agendamento</button>
-        <button type="button" onclick="location.href='agendamentos.php'">Cancelar</button>
+        <button type="button" onclick="location.href='agendamento.php'">Cancelar</button>
     </form>
 </body>
 </html>
