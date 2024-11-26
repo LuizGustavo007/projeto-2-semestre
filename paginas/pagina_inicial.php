@@ -51,7 +51,7 @@ session_start();
             </p><br>
             <div class="service-options">
                 <div class="service-item">
-                    <img src="../img/tosehigienica.PNG" alt="Tosa Higiênica">
+                    <img src="../img/dogfeliz.PNG" alt="Tosa Higiênica">
                     <h3>Tosa Higiênica</h3>
                 </div>
                 <div class="service-item">
