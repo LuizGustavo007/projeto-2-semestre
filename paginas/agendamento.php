@@ -5,9 +5,6 @@ if ($_SESSION['id_cliente']=="" && $_SESSION['usuario_sessao']=="") {
     header("Location: ../index.php");
     exit();
 }
-?>
-<?php
-session_start();
 
 $mysqli = new mysqli('localhost', 'root', '', 'planeta_pet');
 
