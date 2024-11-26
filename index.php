@@ -4,15 +4,18 @@ session_start();
 
 $mensagem = '';
 
+// Verificar se o formulário foi enviado
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
+    // Limpar dados de entrada para evitar problemas com XSS
     $nome = trim($_POST['nome']);
     $senha = trim($_POST['senha']);
 
+    // Verificar se os campos não estão vazios
     if (empty($nome) || empty($senha)) {
         $mensagem = "Por favor, preencha todos os campos.";
     } else {
         try {
-            // Buscar o cliente pelo nome
+            // Preparar consulta para buscar o cliente pelo nome
             $query = "SELECT * FROM clientes WHERE nome_cliente = :nome";
             $stmt = $conexao->prepare($query);
             $stmt->bindValue(':nome', $nome, PDO::PARAM_STR);
@@ -24,21 +27,18 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
                 // Verificar a senha com password_verify
                 if (password_verify($senha, $usuario_logado['senha'])) {
+                    // Iniciar a sessão do usuário
                     $_SESSION['id_cliente'] = $usuario_logado['id_cliente'];
                     $_SESSION['usuario_sessao'] = $usuario_logado['nome_cliente'];
 
                     // Redirecionar para a página inicial
                     header('Location: ./paginas/pagina_inicial.php');
-                    
-
-                    // echo "Redirecionando para ./paginas/pagina_inicial.php";
-                    exit();
-
+                    exit();  // Garantir que o código pare de ser executado após o redirecionamento
                 } else {
-                    $mensagem = "Senha incorreta.";
+                    $mensagem = "Senha incorreta. Tente novamente.";
                 }
             } else {
-                $mensagem = "Usuário não encontrado.";
+                $mensagem = "Usuário não encontrado. Verifique seu nome.";
             }
         } catch (PDOException $e) {
             $mensagem = "Erro ao conectar ao banco de dados: " . $e->getMessage();
@@ -46,6 +46,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     }
 }
 ?>
+
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -70,7 +71,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             <label for="senha">Senha:</label>
             <input name="senha" type="password" required placeholder="Digite sua senha">
 
-            <button type="submit">Enviar</button>
+            <button type="submit">Entrar</button>
 
             <p class="register-link">
                 Não possui uma conta? <a href="./paginas/cadastro.php">Cadastre-se</a>

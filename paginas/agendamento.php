@@ -107,8 +107,8 @@ foreach ($days_of_week as $day) {
     <nav>
         <a href="pagina_inicial.php">Início</a>
         <a href="serviços.php">Serviços</a>
+        <a href="meus_agendamentos.php">Agendamentos</a>
         <a href="sobre_nos.php">Sobre nós</a>
-        <a href="agendamento.php">Calendário</a>
         <a href="../bd/logout.php">Sair</a>
 
     </nav>
