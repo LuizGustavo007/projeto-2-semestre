@@ -1,6 +1,7 @@
 <?php
 session_start();
 
+
 $mysqli = new mysqli('localhost', 'root', '', 'planeta_pet');
 
 if ($mysqli->connect_error) {

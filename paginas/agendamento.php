@@ -1,4 +1,6 @@
 <?php
+session_start();
+
 $mysqli = new mysqli('localhost', 'root', '', 'planeta_pet');
 
 if ($mysqli->connect_error) {
@@ -107,6 +109,8 @@ foreach ($days_of_week as $day) {
         <a href="serviços.php">Serviços</a>
         <a href="sobre_nos.php">Sobre nós</a>
         <a href="agendamento.php">Calendário</a>
+        <a href="../bd/logout.php">Sair</a>
+
     </nav>
 </header>
 

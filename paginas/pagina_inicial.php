@@ -1,10 +1,5 @@
 <?php
-session_start();
 
-if ($_SESSION['nome_sessao']=="" && $_SESSION['senha_sessao']=="") {
-    header("Location: ../index.php");
-    exit();
-}
 ?>
 <!DOCTYPE html>
 <html lang="pt-BR">
@@ -31,7 +26,7 @@ if ($_SESSION['nome_sessao']=="" && $_SESSION['senha_sessao']=="") {
                 <a href="serviços.php">Serviços</a>
                 <a href="sobre_nos.php">Sobre nós</a>
                 <a href="agendamento.php">Calendário</a>
-                <a href="../bd/logout.php">Sair<img id="logout" src="../img/sair.png" alt=""></a>
+                <a href="../bd/logout.php">Sair</a>
             </nav>
         </header>
 

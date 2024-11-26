@@ -1,41 +1,48 @@
 <?php
-session_start();
 include './bd/conexao.php';
+session_start();
 
 $mensagem = '';
 
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
-   
     $nome = trim($_POST['nome']);
     $senha = trim($_POST['senha']);
 
-    try {
-        
-        $sql = "SELECT * FROM clientes WHERE nome_cliente = :nome";
-        $stmt = $conexao->prepare($sql);
-        $stmt->bindValue(':nome', $nome, PDO::PARAM_STR);
-        $stmt->execute();
+    if (empty($nome) || empty($senha)) {
+        $mensagem = "Por favor, preencha todos os campos.";
+    } else {
+        try {
+            // Buscar o cliente pelo nome
+            $query = "SELECT * FROM clientes WHERE nome_cliente = :nome";
+            $stmt = $conexao->prepare($query);
+            $stmt->bindValue(':nome', $nome, PDO::PARAM_STR);
+            $stmt->execute();
 
-       
-        if ($stmt->rowCount() > 0) {
-            $usuario_logado = $stmt->fetch(PDO::FETCH_ASSOC);
+            // Verificar se o cliente foi encontrado
+            if ($stmt->rowCount() > 0) {
+                $usuario_logado = $stmt->fetch(PDO::FETCH_ASSOC);
 
-            
-            if ($senha === $usuario_logado['senha']) {
-                $_SESSION['id_cliente'] = $usuario_logado['id_cliente'];
-                $_SESSION['usuario_sessao'] = $usuario_logado['nome_cliente'];
+                // Verificar a senha com password_verify
+                if (password_verify($senha, $usuario_logado['senha'])) {
+                    $_SESSION['id_cliente'] = $usuario_logado['id_cliente'];
+                    $_SESSION['usuario_sessao'] = $usuario_logado['nome_cliente'];
 
-                
-                header('Location: ../paginas/pagina_inicial.php');
-                exit();
+                    // Redirecionar para a página inicial
+                    header('Location: ./paginas/pagina_inicial.php');
+                    
+
+                    // echo "Redirecionando para ./paginas/pagina_inicial.php";
+                    exit();
+
+                } else {
+                    $mensagem = "Senha incorreta.";
+                }
             } else {
-                $mensagem = "Senha incorreta.";
+                $mensagem = "Usuário não encontrado.";
             }
-        } else {
-            $mensagem = "Usuário não encontrado.";
+        } catch (PDOException $e) {
+            $mensagem = "Erro ao conectar ao banco de dados: " . $e->getMessage();
         }
-    } catch (PDOException $e) {
-        $mensagem = "Erro ao conectar ao banco de dados: " . $e->getMessage();
     }
 }
 ?>
@@ -50,11 +57,9 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 </head>
 <body>
     <div class="login">
-        <img src="../img/logo_semfundo.png" alt="Logo Planeta Pet" class="logo">
-        <h2>Login</h2>
-        
+        <img src="./img/logo_semfundo.png" alt="Logo do Planeta Pet" class="logo">
+
         <form action="" method="POST">
-            
             <?php if (!empty($mensagem)): ?>
                 <div class="error-message"><?= htmlspecialchars($mensagem); ?></div>
             <?php endif; ?>
@@ -65,10 +70,10 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             <label for="senha">Senha:</label>
             <input name="senha" type="password" required placeholder="Digite sua senha">
 
-            <button type="submit">Entrar</button>
+            <button type="submit">Enviar</button>
 
             <p class="register-link">
-                Não possui uma conta? <a href="../paginas/cadastro.php">Cadastre-se</a>
+                Não possui uma conta? <a href="./paginas/cadastro.php">Cadastre-se</a>
             </p>
         </form>
     </div>
