@@ -2,20 +2,17 @@
 $host = 'localhost';
 $dbname = 'planeta_pet';
 $username = 'root';
-$password = ''; // Ajuste a senha conforme necessário
+$password = ''; 
 
 try {
-    // Criação da conexão com PDO
     $conexao = new PDO("mysql:host=$host;dbname=$dbname;charset=utf8mb4", $username, $password);
-    $conexao->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION); // Ativa exceções para erros no PDO
-    $conexao->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC); // Define o modo de fetch padrão como associativo
+    $conexao->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION); 
+    $conexao->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
 } catch (PDOException $e) {
-    // Tratamento de erro
     echo "Erro na conexão com o banco de dados: " . $e->getMessage();
-    exit(); // Interrompe a execução em caso de erro
+    exit(); 
 }
 ?>
-
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>

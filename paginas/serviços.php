@@ -1,7 +1,10 @@
 <?php
 session_start();
 
-
+if ($_SESSION['id_cliente']=="" && $_SESSION['usuario_sessao']=="") {
+    header("Location: ../index.php");
+    exit();
+}
 ?>
 <!DOCTYPE html>
 <html lang="pt-BR">

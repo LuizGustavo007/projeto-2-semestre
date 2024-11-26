@@ -1,6 +1,11 @@
 <?php
 session_start();
 
+if ($_SESSION['id_cliente']=="" && $_SESSION['usuario_sessao']=="") {
+    header("Location: ../index.php");
+    exit();
+}
+
 $mysqli = new mysqli('localhost', 'root', '', 'planeta_pet');
 
 if ($mysqli->connect_error) {
@@ -11,7 +16,7 @@ function generate_time_slots() {
     $times = [];
     $start_time = strtotime('08:00');
     $end_time = strtotime('19:30');
-    $interval = 40 * 60; // 40 minutos em segundos
+    $interval = 40 * 60; 
 
     while ($start_time <= $end_time) {
         $times[] = date('H:i', $start_time);
@@ -37,7 +42,7 @@ function get_agendamentos($dia_semana) {
     return $agendamentos;
 }
 
-$available_times = generate_time_slots(); // Chama a função para gerar os horários
+$available_times = generate_time_slots();
 $days_of_week = ['segunda', 'terça', 'quarta', 'quinta', 'sexta'];
 $agendamentos_por_dia = [];
 

@@ -1,84 +1,115 @@
-*{
+* {
     margin: 0;
     padding: 0;
-}
-
-body {
-    font-family: Arial, sans-serif;
-    background-color: #FFFFFF;
-    margin: 0;
-    padding: 0;
-}
-
-.header {
-    background-color: #FFA500;
-    height: 70px;
-    display: flex;
-    align-items: center;
-    padding-left: 20px;
-}
-
-.header .logo img {
-    height: 40px;
-}
-
-.register-container {
-    width: 350px;
-    margin: 150px;
-    padding: 40px;
-    background-color: rgba(251,156, 3, 1);
-    border-radius: 10px;
-    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
-}
-
-.register-container h1 {
-    font-family: 'Comic Sans MS', cursive, sans-serif;
-    color: #5C2B2E;
-    text-align: center;
-}
-
-.imagemlogin {
-    width: 70;
-    height: 50;
-}
-
-.register-container label {
-    font-size: 14px;
-    color: #5C2B2E;
-}
-
-.register-container input[type="text"],
-.register-container input[type="tel"],
-.register-container input[type="email"],
-.register-container input[type="password"] {
-    width: 100%;
-    padding: 10px;
-    margin: 10px 0;
-    border: 1px solid #ccc;
-    border-radius: 5px;
     box-sizing: border-box;
 }
-
-.register-container button {
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f2f2f2; 
+    display: flex;
+    justify-content: center; 
+    align-items: center;  
+    height: 100vh; 
+    margin: 0;
+    padding-top: 80px;
+    flex-direction: column;
+}
+header {
+    background-color: #FF8C00;
+    padding: 10px 20px; 
+    position: fixed; 
+    top: 0;  
+    left: 0;
+    right: 0;
+    display: flex;
+    align-items: center; 
+    z-index: 1000;
+}
+header .logo-nav {
+    display: flex;
+    align-items: center;
+}
+header .logo-nav img {
+    max-width: 90px; 
+    margin-right: 10px; 
+}
+header #site {
+    font-family: "Atma", system-ui;
+    font-size: 3rem;
+    font-weight: bold;
+    color: #4b1d65;
+    margin-left: 10px; 
+}
+.cadastro {
+    background-color: #FFCC80;
+    width: 350px;
+    padding: 30px 40px 40px 40px; 
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
+    margin-top: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px; 
+    justify-content: center;
+    align-items: center;
+}
+.cadastro .logo {
+    max-width: 80%;
+    margin-bottom: 20px; 
+}
+h1 {
+    font-family: "Atma", system-ui;
+    color: #4b1d65; 
+    font-size: xx-large;
+    margin-bottom: 20px;
+}
+.error-message {
+    color: red;
+    font-size: 14px;
+    margin-bottom: 15px;
+}
+.cadastro label {
+    font-size: 14px;
+    font-weight: bold;
+    margin-bottom: 5px;
+    text-align: left;
+}
+.cadastro input[type="text"],
+.cadastro input[type="password"] {
     width: 100%;
     padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+}
+button[type="submit"] {
+    width: 100%;
+    padding: 12px;
     background-color: #FFF8E1;
     border: none;
     border-radius: 5px;
     cursor: pointer;
     font-weight: bold;
     color: #5C2B2E;
+    font-size: 16px;
+    display: flex;
+    justify-content: center; 
+    align-items: center;
 }
-
-.register-container button:hover {
-    background-color: #FFD54F;
+button[type="submit"]:hover {
+    background-color: #FFD54F; 
 }
-
-.titulo p{
-    color: #47055e;
+.register-link {
+    margin-top: 10px;
+    font-size: 14px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.register-link a {
+    color: #5C2B2E;
     text-decoration: none;
-    margin-left: 5px;
-    font-family: "Atma", system-ui;
-    font-weight: 1000;
-    font-style: normal;
+}
+.register-link a:hover {
+    text-decoration: underline;
 }

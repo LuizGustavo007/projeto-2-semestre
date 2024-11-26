@@ -1,5 +1,10 @@
 <?php
 session_start();
+
+if ($_SESSION['id_cliente']=="" && $_SESSION['usuario_sessao']=="") {
+    header("Location: ../index.php");
+    exit();
+}
 ?>
 <!DOCTYPE html>
 <html lang="pt-BR">
@@ -35,7 +40,7 @@ session_start();
                 
                 <div class="carousel-content">
                     <a href="serviços.php">
-                    <img src="../img/carrosel.PNG" alt="Promoção de rações">
+                    <img src="../img/imagemcarrosel.PNG" alt="Promoção de rações">
                     </a>
                 </div>
                 
