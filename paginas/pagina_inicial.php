@@ -35,7 +35,7 @@ session_start();
                 
                 <div class="carousel-content">
                     <a href="serviços.php">
-                    <img src="../img/ImgCarrossel.PNG" alt="Promoção de rações">
+                    <img src="../img/carrosel.PNG" alt="Promoção de rações">
                     </a>
                 </div>
                 
@@ -43,7 +43,7 @@ session_start();
         </section>
 
         <section class="services">
-            <h2>Tipos de tosa</h2><br>
+            <h2>Tipos de tosa</h2><br><br>
             <p class="x1">
                 Você sabia que a tosa não serve apenas para deixar os cães mais bonitos?<br>
                 Esse procedimento é muito importante para a saúde e higiene desses animais! <br>
