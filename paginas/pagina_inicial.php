@@ -40,7 +40,7 @@ if ($_SESSION['id_cliente']=="" && $_SESSION['usuario_sessao']=="") {
                 
                 <div class="carousel-content">
                     <a href="serviços.php">
-                    <img src="../img/imagemcarrosel.PNG" alt="Promoção de rações">
+                    <img src="../img/bannerinicio.PNG" alt="Promoção de rações">
                     </a>
                 </div>
                 
