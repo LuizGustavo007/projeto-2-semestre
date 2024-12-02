@@ -1,15 +1,20 @@
+/* Reset de estilo */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
+
+/* Configuração geral */
 html, body {
-    height: 100%; 
+    height: 100%;
     font-family: 'Atma', sans-serif;
     color: #4B0082;
     display: flex;
     flex-direction: column;
 }
+
+/* Header */
 header {
     background-color: #FF8C00;
     padding: 10px 20px;
@@ -20,7 +25,7 @@ header {
 header .logo {
     display: flex;
     align-items: center;
-    font-size:xx-large;
+    font-size: xx-large;
     font-weight: bold;
 }
 header .logo img {
@@ -32,27 +37,32 @@ header nav a {
     text-decoration: none;
     margin: 0 15px;
     font-weight: bold;
-    font-size:x-large;
+    font-size: x-large;
     margin-left: 20px;
-    
 }
 header nav a:hover {
     font-size: xx-large;
 }
-#logout{
+#logout {
     padding-left: 10px;
     width: 30px;
     height: 5%;
 }
+
+/* Títulos principais */
 h1 {
     font-size: 3rem;
     text-align: center;
     margin-bottom: 40px;
     color: #4b1d65;
 }
+
+/* Links */
 a {
     text-decoration: none;
 }
+
+/* Container de Serviços */
 .services-container {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -62,6 +72,8 @@ a {
     max-width: 1200px;
     margin: 0 auto;
 }
+
+/* Caixa de Serviço */
 .service-box {
     background-color: #ffa94d;
     border-radius: 10px;
@@ -84,6 +96,8 @@ a {
     color: #333;
     line-height: 1.6;
 }
+
+/* Seção Higiene */
 .hygiene-section {
     background-color: #ffe5b4;
     padding: 20px;
@@ -97,19 +111,23 @@ a {
     color: #4b1d65;
     line-height: 1.8;
 }
-p{
+
+/* Tipografia adicional */
+p {
     font-family: "Open Sans", sans-serif;
     font-size: medium;
     margin-bottom: 0;
     margin-top: 0;
 }
-h4{
+h4 {
     margin-bottom: 0;
     font-size: large;
 }
+
+/* Rodapé */
 footer {
-    background-color: #4b1d65; 
-    color: #fff; 
+    background-color: #4b1d65;
+    color: #fff;
     padding: 20px;
     margin-top: 50px;
 }
@@ -119,7 +137,7 @@ footer {
     align-items: flex-start;
 }
 .contact-info {
-    width: 50%; 
+    width: 50%;
     line-height: 1.5;
 }
 .contact-info h4 {
@@ -127,7 +145,7 @@ footer {
     margin-bottom: 0px;
 }
 .pagamento {
-    width: 30%; 
+    width: 30%;
     display: flex;
     flex-wrap: wrap;
     gap: 10px;
@@ -136,6 +154,8 @@ footer {
     width: 100%;
     max-width: 300px;
 }
+
+/* Responsividade - Tablets e Menor Largura */
 @media (max-width: 992px) {
     header nav a {
         font-size: large;
@@ -144,11 +164,13 @@ footer {
     .services-container {
         grid-template-columns: repeat(2, 1fr);
     }
-    footer .info, footer .formas-pagamento {
+    footer .contact-info, footer .pagamento {
         flex: 1 1 100%;
         text-align: center;
     }
 }
+
+/* Responsividade - Smartphones */
 @media (max-width: 600px) {
     header nav {
         flex-direction: column;
@@ -160,7 +182,8 @@ footer {
     .services-container {
         grid-template-columns: 1fr;
     }
-    footer .info, footer .formas-pagamento {
+    footer .contact-info, footer .pagamento {
         flex: 1 1 100%;
+        text-align: center;
     }
 }

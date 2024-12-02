@@ -77,9 +77,27 @@ form button[type="button"]:hover {
 }
 
 /* Responsividade */
+@media (max-width: 1024px) {
+    h2 {
+        font-size: 2.2rem;
+        margin-bottom: 50px;
+    }
+
+    p {
+        font-size: 1.3rem;
+    }
+
+    form button {
+        font-size: 1.1rem;
+        padding: 8px 16px;
+        margin: 8px;
+    }
+}
+
 @media (max-width: 768px) {
     h2 {
         font-size: 2rem;
+        margin-bottom: 40px;
     }
 
     p {
@@ -88,6 +106,24 @@ form button[type="button"]:hover {
 
     form button {
         font-size: 1rem;
-        padding: 8px 16px;
+        padding: 8px 14px;
+    }
+}
+
+@media (max-width: 480px) {
+    h2 {
+        font-size: 1.8rem;
+        margin-bottom: 30px;
+    }
+
+    p {
+        font-size: 1rem;
+        margin-bottom: 10px;
+    }
+
+    form button {
+        font-size: 0.9rem;
+        padding: 6px 12px;
+        margin: 6px;
     }
 }

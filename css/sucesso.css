@@ -1,8 +1,10 @@
+/* Estilos Gerais */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
+
 html, body {
     height: 100%;
     font-family: 'Atma', sans-serif;
@@ -14,21 +16,27 @@ html, body {
     align-items: center;
     text-align: center;
 }
+
+/* Título */
 h2 {
     font-size: 2.5rem;
-    color: #28a745;
+    color: #28a745; /* Cor verde */
     margin-bottom: 20px;
-    font-weight: 700;
+    font-weight: 700; /* Peso da fonte */
 }
+
+/* Parágrafo */
 p {
     font-size: 1.2rem;
-    color: #333;
+    color: #333; /* Cor mais escura para o texto */
     margin-bottom: 40px;
 }
+
+/* Botão */
 a.btn {
     display: inline-block;
     padding: 15px 30px;
-    background-color: #FF8C00;
+    background-color: #FF8C00; /* Cor laranja */
     color: white;
     text-decoration: none;
     font-size: 1.1rem;
@@ -36,19 +44,22 @@ a.btn {
     border-radius: 8px;
     transition: background-color 0.3s ease, transform 0.3s ease;
 }
+
 a.btn:hover {
-    background-color: #FF6A00;
-    transform: scale(1.05);
+    background-color: #FF6A00; /* Cor laranja mais escura ao passar o mouse */
+    transform: scale(1.05); /* Efeito de aumento ao passar o mouse */
 }
+
+/* Media Queries para dispositivos pequenos */
 @media (max-width: 600px) {
     h2 {
-        font-size: 2rem;
+        font-size: 2rem; /* Ajusta o tamanho do título */
     }
     p {
-        font-size: 1rem;
+        font-size: 1rem; /* Ajusta o tamanho da fonte do parágrafo */
     }
     a.btn {
-        font-size: 1rem;
-        padding: 12px 25px;
+        font-size: 1rem; /* Ajusta o tamanho da fonte do botão */
+        padding: 12px 25px; /* Ajusta o padding do botão */
     }
 }

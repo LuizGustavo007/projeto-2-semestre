@@ -5,24 +5,24 @@
 }
 body {
     font-family: Arial, sans-serif;
-    background-color: #f2f2f2; 
+    background-color: #f2f2f2;
     display: flex;
-    justify-content: center; 
-    align-items: center;  
-    height: 100vh; 
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
     margin: 0;
     padding-top: 80px;
     flex-direction: column;
 }
 header {
     background-color: #FF8C00;
-    padding: 10px 20px; 
-    position: fixed; 
-    top: 0;  
+    padding: 10px 20px;
+    position: fixed;
+    top: 0;
     left: 0;
     right: 0;
     display: flex;
-    align-items: center; 
+    align-items: center;
     z-index: 1000;
 }
 header .logo-nav {
@@ -30,36 +30,36 @@ header .logo-nav {
     align-items: center;
 }
 header .logo-nav img {
-    max-width: 90px; 
-    margin-right: 10px; 
+    max-width: 90px;
+    margin-right: 10px;
 }
 header #site {
     font-family: "Atma", system-ui;
     font-size: 3rem;
     font-weight: bold;
     color: #4b1d65;
-    margin-left: 10px; 
+    margin-left: 10px;
 }
 .cadastro {
     background-color: #FFCC80;
     width: 350px;
-    padding: 30px 40px 40px 40px; 
+    padding: 30px 40px 40px 40px;
     border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     margin-top: 10px;
     display: flex;
     flex-direction: column;
-    gap: 20px; 
+    gap: 20px;
     justify-content: center;
     align-items: center;
 }
 .cadastro .logo {
     max-width: 80%;
-    margin-bottom: 20px; 
+    margin-bottom: 20px;
 }
 h1 {
     font-family: "Atma", system-ui;
-    color: #4b1d65; 
+    color: #4b1d65;
     font-size: xx-large;
     margin-bottom: 20px;
 }
@@ -93,11 +93,11 @@ button[type="submit"] {
     color: #5C2B2E;
     font-size: 16px;
     display: flex;
-    justify-content: center; 
+    justify-content: center;
     align-items: center;
 }
 button[type="submit"]:hover {
-    background-color: #FFD54F; 
+    background-color: #FFD54F;
 }
 .register-link {
     margin-top: 10px;
@@ -112,4 +112,53 @@ button[type="submit"]:hover {
 }
 .register-link a:hover {
     text-decoration: underline;
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+    header #site {
+        font-size: 2rem;
+    }
+
+    .cadastro {
+        width: 90%;
+        padding: 20px;
+        gap: 15px;
+    }
+
+    h1 {
+        font-size: large;
+    }
+
+    button[type="submit"] {
+        padding: 10px;
+        font-size: 14px;
+    }
+
+    .register-link {
+        font-size: 12px;
+    }
+}
+
+@media (max-width: 480px) {
+    header {
+        padding: 10px;
+    }
+
+    header .logo-nav img {
+        max-width: 60px;
+    }
+
+    header #site {
+        font-size: 1.5rem;
+        margin-left: 5px;
+    }
+
+    .cadastro {
+        padding: 15px;
+    }
+
+    h1 {
+        font-size: medium;
+    }
 }

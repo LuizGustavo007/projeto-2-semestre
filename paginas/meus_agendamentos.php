@@ -1,7 +1,7 @@
 <?php
 session_start();
 
-if ($_SESSION['id_cliente']=="" && $_SESSION['usuario_sessao']=="") {
+if ($_SESSION['id_cliente'] == "" && $_SESSION['usuario_sessao'] == "") {
     header("Location: ../index.php");
     exit();
 }
@@ -17,11 +17,29 @@ if ($mysqli->connect_error) {
     die("Erro de conexão com o banco de dados: " . $mysqli->connect_error);
 }
 
-
 $id_cliente = $_SESSION['id_cliente'];
 
+// Manipulação de exclusão de agendamento
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['id_agendamento'])) {
+    $id_agendamento = intval($_POST['id_agendamento']);
+    
+    // Deletar agendamento se pertencer ao cliente
+    $delete_sql = "DELETE FROM agendamentos WHERE id_agendamento = ? AND id_cliente = ?";
+    $delete_stmt = $mysqli->prepare($delete_sql);
+    if ($delete_stmt === false) {
+        die("Erro ao preparar a consulta de exclusão: " . $mysqli->error);
+    }
+    $delete_stmt->bind_param('ii', $id_agendamento, $id_cliente);
+    $delete_stmt->execute();
+    $delete_stmt->close();
+    
+    // Redireciona para evitar reenvio do formulário
+    header("Location: meus_agendamentos.php");
+    exit();
+}
 
-$sql = "SELECT dia_semana, horario FROM agendamentos WHERE id_cliente = ?";
+// Buscar agendamentos
+$sql = "SELECT id_agendamento, dia_semana, horario FROM agendamentos WHERE id_cliente = ?";
 $stmt = $mysqli->prepare($sql);
 if ($stmt === false) {
     die("Erro ao preparar a consulta: " . $mysqli->error);
@@ -30,7 +48,6 @@ if ($stmt === false) {
 $stmt->bind_param('i', $id_cliente);
 $stmt->execute();
 $result = $stmt->get_result();
-
 
 $agendamentos = [];
 while ($row = $result->fetch_assoc()) {
@@ -44,7 +61,7 @@ $stmt->close();
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://fonts.googleapis.com/css2?family=Atma:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <title>Sobre nós - Planeta Pet</title>
+    <title>Meus Agendamentos - Planeta Pet</title>
     <link rel="stylesheet" href="../css/tudodeagendamento.css">
 </head>
 <body>
@@ -68,7 +85,11 @@ $stmt->close();
                 <?php foreach ($agendamentos as $agendamento): ?>
                     <li>
                         <strong>Dia:</strong> <?= ucfirst($agendamento['dia_semana']); ?><br>
-                        <strong>Horário:</strong> <?= $agendamento['horario']; ?>
+                        <strong>Horário:</strong> <?= $agendamento['horario']; ?><br>
+                        <form method="POST" style="display:inline;">
+                            <input type="hidden" name="id_agendamento" value="<?= $agendamento['id_agendamento']; ?>">
+                            <button type="submit" class="delete-button">Excluir</button>
+                        </form>
                     </li>
                 <?php endforeach; ?>
             </ul>

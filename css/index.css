@@ -1,88 +1,104 @@
+/* Reset de estilo */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
+
+/* Configuração geral */
 body {
     font-family: Arial, sans-serif;
-    background-color: #f2f2f2; 
+    background-color: #f2f2f2;
     display: flex;
-    justify-content: center; 
-    align-items: center;   
-    height: 100vh; 
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
     margin: 0;
-    padding-top: 80px; 
+    padding-top: 80px;
     flex-direction: column;
 }
+
+/* Estilo do header */
 header {
     background-color: #FF8C00;
-    padding: 10px 20px; 
-    position: fixed; 
-    top: 0;  
+    padding: 10px 20px;
+    position: fixed;
+    top: 0;
     left: 0;
     right: 0;
     display: flex;
     align-items: center;
     z-index: 1000;
 }
+
 header .logo-nav {
     display: flex;
-    align-items: center; 
+    align-items: center;
 }
+
 header .logo-nav img {
     max-width: 90px;
-    margin-right: 10px; 
+    margin-right: 10px;
 }
+
 header #site {
     font-family: "Atma", system-ui;
-    font-size: 3rem;  
+    font-size: 3rem;
     font-weight: bold;
     color: #4b1d65;
-    margin-left: 10px; 
+    margin-left: 10px;
 }
+
+/* Estilo do container de login */
 .login {
     background-color: #FFCC80;
     width: 350px;
-    padding: 30px 40px 40px 40px; 
+    padding: 30px 40px 40px 40px;
     border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
-    margin-top: 10px; 
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin-top: 10px;
     display: flex;
     flex-direction: column;
-    gap: 20px; 
-    justify-content: center; 
-    align-items: center; 
+    gap: 20px;
+    justify-content: center;
+    align-items: center;
 }
+
 .login .logo {
     max-width: 80%;
-    margin-bottom: 20px; 
+    margin-bottom: 20px;
 }
+
 h1 {
     font-family: "Atma", system-ui;
-    color: #4b1d65; 
+    color: #4b1d65;
     font-size: xx-large;
     margin-bottom: 20px;
 }
+
 .error-message {
     color: red;
     font-size: 14px;
     margin-bottom: 15px;
 }
+
 .login label {
     font-size: 14px;
     font-weight: bold;
     margin-bottom: 5px;
-    text-align: left; 
+    text-align: left;
 }
+
 .login input[type="text"],
 .login input[type="password"] {
     width: 100%;
     padding: 10px;
-    margin-bottom: 15px; 
+    margin-bottom: 15px;
     border: 1px solid #ccc;
     border-radius: 5px;
     font-size: 16px;
 }
+
 button[type="submit"] {
     width: 100%;
     padding: 12px;
@@ -94,23 +110,103 @@ button[type="submit"] {
     color: #5C2B2E;
     font-size: 16px;
     display: flex;
-    justify-content: center; 
+    justify-content: center;
     align-items: center;
 }
+
 button[type="submit"]:hover {
-    background-color: #FFD54F; 
+    background-color: #FFD54F;
 }
+
 .register-link {
     margin-top: 10px;
     font-size: 14px;
     display: flex;
-    justify-content: center; 
+    justify-content: center;
     align-items: center;
 }
+
 .register-link a {
     color: #5C2B2E;
     text-decoration: none;
 }
+
 .register-link a:hover {
     text-decoration: underline;
+}
+
+/* Responsividade */
+@media (max-width: 1024px) {
+    header #site {
+        font-size: 2.5rem;
+    }
+
+    .login {
+        width: 80%;
+        padding: 25px 30px;
+    }
+
+    h1 {
+        font-size: 1.8rem;
+    }
+
+    .login input[type="text"],
+    .login input[type="password"] {
+        font-size: 15px;
+    }
+
+    button[type="submit"] {
+        font-size: 15px;
+        padding: 10px;
+    }
+}
+
+@media (max-width: 768px) {
+    header #site {
+        font-size: 2rem;
+    }
+
+    .login {
+        width: 90%;
+        padding: 20px 25px;
+    }
+
+    h1 {
+        font-size: 1.6rem;
+    }
+
+    .login input[type="text"],
+    .login input[type="password"] {
+        font-size: 14px;
+    }
+
+    button[type="submit"] {
+        font-size: 14px;
+        padding: 8px;
+    }
+}
+
+@media (max-width: 480px) {
+    header #site {
+        font-size: 1.8rem;
+    }
+
+    .login {
+        width: 100%;
+        padding: 15px 20px;
+    }
+
+    h1 {
+        font-size: 1.4rem;
+    }
+
+    .login input[type="text"],
+    .login input[type="password"] {
+        font-size: 13px;
+    }
+
+    button[type="submit"] {
+        font-size: 13px;
+        padding: 6px;
+    }
 }

@@ -18,6 +18,8 @@ html, body {
     width: 30px;
     height: 5%;
 }
+
+/* Estilização do cabeçalho */
 header {
     background-color: #FF8C00;
     padding: 10px 20px;
@@ -25,28 +27,32 @@ header {
     justify-content: space-between;
     align-items: center;
 }
+
 header .logo {
     display: flex;
     align-items: center;
-    font-size:xx-large;
+    font-size: xx-large;
     font-weight: bold;
 }
+
 header .logo img {
     width: 70px;
     margin-right: 20px;
 }
+
 header nav a {
     color: #4B0082;
     text-decoration: none;
     margin: 0 15px;
     font-weight: bold;
-    font-size:x-large;
+    font-size: x-large;
     margin-left: 20px;
-    
 }
+
 header nav a:hover {
     font-size: xx-large;
 }
+
 /* Estilo do título */
 h2 {
     text-align: center;
@@ -94,19 +100,40 @@ h2 {
     margin: 20px 0;
 }
 
+/* Estilo do botão de deletar */
+.delete-button {
+    background-color: #FF4500; /* Tom laranja forte para combinar com a paleta */
+    color: white; /* Texto branco para contraste */
+    border: none; /* Sem borda */
+    padding: 10px 15px; /* Espaçamento interno */
+    border-radius: 5px; /* Bordas arredondadas */
+    cursor: pointer; /* Cursor de mão ao passar o mouse */
+    font-size: 1rem; /* Tamanho do texto */
+    font-weight: bold; /* Texto em negrito */
+    transition: background-color 0.3s ease, transform 0.2s ease; /* Animação suave */
+}
+
+.delete-button:hover {
+    background-color: #FF6347; /* Tom mais claro ao passar o mouse */
+    transform: scale(1.05); /* Leve aumento ao passar o mouse */
+}
+
+.delete-button:active {
+    background-color: #FF2400; /* Tom mais escuro ao clicar */
+    transform: scale(0.95); /* Reduzido para dar efeito de clique */
+}
+
 /* Responsividade */
 @media (max-width: 768px) {
     h2 {
-        font-size: 1.5rem;
+        font-size: 1.5rem; /* Ajusta o tamanho do título */
     }
 
     .agendamentos-list {
-        padding: 15px;
+        padding: 15px; /* Ajusta o padding da lista */
     }
 
     .agendamentos-list li {
-        font-size: 1rem;
+        font-size: 1rem; /* Ajusta o tamanho da fonte dos itens */
     }
 }
-
-
